@@ -8,56 +8,47 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   const items = gsap.utils.toArray('.sub__item');
   let activeItem = null;
+  let isAutoScrolling = false;
 
-  items.forEach((item, index) => {
+  items.forEach((item) => {
     const content = item.querySelector('.sub__item__bottom');
     gsap.set(content, { height: 0, opacity: 0, overflow: 'hidden' });
 
-    // 2. Створюємо тригер для кожного елемента
     ScrollTrigger.create({
       trigger: item,
-      // Активація, коли верх елемента доходить до 60% висоти екрана
       start: "top 60%", 
-      // Деактивація (опціонально), коли низ елемента йде вище 40%
-      end: "bottom 30%",
-      onEnter: () => activate(item),
-      onEnterBack: () => activate(item),
-      markers: true // увімкни для візуальної перевірки ліній
+      end: "bottom 40%",
+      onEnter: () => !isAutoScrolling && activate(item),
+      onEnterBack: () => !isAutoScrolling && activate(item),
     });
   });
 
   function activate(item) {
     if (activeItem === item) return;
 
-    // Закриваємо попередній активний елемент
+    // Закриваємо попередній
     if (activeItem) {
       const prevContent = activeItem.querySelector('.sub__item__bottom');
       activeItem.classList.remove('is-active');
-      gsap.to(prevContent, { 
-        height: 0, 
-        opacity: 0, 
-        duration: 0.4, 
-        ease: 'power1.inOut' 
-      });
+      gsap.to(prevContent, { height: 0, opacity: 0, duration: 0.3, overwrite: true });
     }
 
-    // Відкриваємо поточний елемент
     item.classList.add('is-active');
     const content = item.querySelector('.sub__item__bottom');
-    
     gsap.to(content, {
       height: 'auto',
       opacity: 1,
-      duration: 0.5,
-      ease: 'power2.out',
-      overwrite: 'auto',
-      onComplete: () => {
-        ScrollTrigger.refresh();
-      }
+      duration: 0.6,
+      ease: "power2.out",
+      overwrite: true,
+      onUpdate: () => {
+        if (!isAutoScrolling) ScrollTrigger.refresh();
+      },
+      onComplete: () => ScrollTrigger.refresh()
     });
 
     activeItem = item;
