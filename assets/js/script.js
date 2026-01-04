@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -16,47 +17,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
   items.forEach(item => {
     const content = item.querySelector('.sub__item__bottom');
-    gsap.set(content, { height: 0, opacity: 0 });
+
+    gsap.set(content, {
+      height: 0,
+      opacity: 0,
+      overflow: 'hidden'
+    });
 
     ScrollTrigger.create({
       trigger: item,
-      start: 'top 65%',
+      start: 'top 70%', 
       onEnter: () => activate(item),
       onEnterBack: () => activate(item),
-      markers: true
+      invalidateOnRefresh: true
     });
   });
 
-  function activate(item) {
-    if (activeItem === item) return;
+ function activate(item) {
+  if (activeItem === item) return;
 
-    items.forEach(i => {
-      const c = i.querySelector('.sub__item__bottom');
+  items.forEach(i => {
+    const c = i.querySelector('.sub__item__bottom');
 
-      if (i === item) {
-        i.classList.add('is-active');
-        gsap.to(c, {
-          height: c.scrollHeight,
-          opacity: 1,
-          duration: 0.5,
-          ease: 'power2.out',
-          overwrite: 'auto'
-        });
-      } else {
-        i.classList.remove('is-active');
-        gsap.to(c, {
-          height: 0,
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.inOut',
-          overwrite: 'auto'
-        });
-      }
-    });
+    if (i === item) {
+      i.classList.add('is-active');
 
-    activeItem = item;
-  }
+      gsap.to(c, {
+        height: c.scrollHeight,
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        overwrite: 'auto',
+        onComplete: () => {
+          gsap.set(c, { height: 'auto' });
+          ScrollTrigger.refresh(); 
+        }
+      });
+
+    } else {
+      i.classList.remove('is-active');
+
+      gsap.to(c, {
+        height: 0,
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.inOut',
+        overwrite: 'auto'
+      });
+    }
+  });
+
+  activeItem = item;
+}
+
+  window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+  });
 });
+
 
 
 // const hideSubcategoryItem = () => {
