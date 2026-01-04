@@ -476,6 +476,8 @@ form{
 			flex-direction: column-reverse;
 			justify-content: space-between;
 			height: auto;
+			gap:24px;
+
 			@media screen and (min-width:1024px) {
 				flex-direction: column;
 			}

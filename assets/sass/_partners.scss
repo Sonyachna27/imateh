@@ -1,0 +1,127 @@
+@use './roots' as *;
+.partners{
+margin-bottom: 240px;
+&__title{
+	margin-bottom: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	@media screen and (min-width:1024px) {
+		margin-bottom: 44px;
+	}
+	h2{
+		color: $white-500;
+	}
+	p{
+		color: $gray;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 140%;
+		@media screen and (min-width:1024px) {
+			font-size: 18px;
+		}
+	}
+}
+&__items{
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	margin-bottom: 40px;
+	@media screen and (min-width:1024px) {
+		margin-bottom: 44px;
+	}
+}
+&__item{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+	align-items: center;
+	padding-bottom: 24px;
+	border-bottom: 1px solid $black-100;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 120%;
+	@media screen and (min-width:1024px) and (max-width:1239.9px) {
+		gap: 12px 60px;
+		font-size: 18px;
+	}
+	@media screen and (min-width:1240px) {
+		gap: 12px 80px;
+		font-size: 22px;
+	}
+	&:hover{
+		.partners__item__img img{
+			filter: grayscale(0);
+		}
+		.partners__item__name{
+			span{
+				color: $accent-100;
+				span{
+					color: $gray-300;
+				}
+			}
+		}
+	}
+	&__img{
+		min-width: 98px;
+		max-width: 98px;
+		background-color: $white;
+		padding: 6px;
+		border-radius: 6px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-height: 44px;
+		height: 100%;
+		min-height: 44px;
+
+		@media screen and (min-width:1024px) {
+			width: 11%;
+			min-width: 150px;
+			max-width: 150px;
+			max-height: 67px;
+			min-height: 67px;
+		}
+		img{
+			transition: 600ms ease-out;
+			filter: grayscale(1);
+		}
+	}
+	&__name{
+		color: $white;
+		width: calc(100% - 98px - 24px);
+		span{
+				transition: 600ms ease-out;
+			span{
+				color: $gray-300;
+			}
+		}
+		@media screen and (min-width:1024px) {
+			width: 29%;
+		}
+	}
+	&__description{
+		@media screen and (min-width:1024px) {
+			width: 45%;
+		}
+	}
+}
+&__content{
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 140%; /* 25.2px */
+	letter-spacing: -0.54px;
+	@media screen and (min-width:1024px)  and (max-width:1239.9px){
+		font-size: 24px;
+		letter-spacing: -0.72px;
+	}
+	@media screen and  (min-width:1240px){
+		font-size: 28px;
+		letter-spacing: -0.84px;
+	}
+
+}
+}
