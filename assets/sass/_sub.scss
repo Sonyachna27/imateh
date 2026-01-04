@@ -10,21 +10,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-bottom: 20vh;
 		@media screen and (max-width:1023.9px) {
 			margin-left: -18px;
 			margin-right: -18px;
 		}
 	}
-	.top-content,
-.bottom-content {
-  width: 100%;
-  height: 200px;
-  display: block;
-}
-
 	&__item{
-		transition: 600ms ease-out;
 		border-radius: 40px 40px 0 0;
 		border-top: 1px solid $black-100;
 		background: $black-200;
@@ -34,7 +25,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
-					@media screen and (min-width:1024px) and (max-width:1239.9px) {
+		@media screen and (min-width:1024px) and (max-width:1239.9px) {
 				gap: 60px;
 			}
 			@media screen and (min-width:1240px) {
@@ -50,6 +41,8 @@
 				bottom: -29px;
 				left: 0;
 				background-color: inherit;
+				display: block;
+   			 pointer-events: none;
 			}
 		}
 		&:nth-last-of-type(1){
@@ -58,9 +51,9 @@
 				content: none;
 			}
 		}
-		&.is-active{
-			height:  100vh;
-		}
+		// &.is-active{
+		// 	z-index: 2;
+		// }
 		&__top{
 			display: flex;
 			align-items: center;
@@ -126,20 +119,18 @@
 
 		}
 		&__bottom{
-
-
-			overflow: hidden;  
-			height: 0;        
-			opacity: 0;       
+			height: 0;
+			opacity: 0;
+			overflow: hidden;
 			will-change: height, opacity;
-			.is-active &{
-				overflow: visible;
-				visibility: visible;
-				height: 100%;
-				opacity: 1;
-				visibility: visible;
-  			opacity: 1;
-			}
+			// .is-active &{
+			// 	overflow: visible;
+			// 	visibility: visible;
+			// 	height: 100%;
+			// 	opacity: 1;
+			// 	visibility: visible;
+  		// 	opacity: 1;
+			// }
 
 			&__wrap{
 				display: flex;

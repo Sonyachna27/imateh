@@ -4,92 +4,211 @@ document.addEventListener("DOMContentLoaded", function () {
 	openVideo ();	
 	hideStickyButtonOnScroll();
 	prettyScroll();
-	// hideSubcategoryItem();
+	hideSubcategoryItem();
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-  const items = gsap.utils.toArray('.sub__item');
-  let activeItem = null;
-  let isAutoScrolling = false;
-
-  items.forEach((item) => {
-    const content = item.querySelector('.sub__item__bottom');
-    gsap.set(content, { height: 0, opacity: 0, overflow: 'hidden' });
-
-    ScrollTrigger.create({
-      trigger: item,
-      start: "top 60%", 
-      end: "bottom 40%",
-      onEnter: () => !isAutoScrolling && activate(item),
-      onEnterBack: () => !isAutoScrolling && activate(item),
-    });
-  });
-
-  function activate(item) {
-    if (activeItem === item) return;
-
-    // Закриваємо попередній
-    if (activeItem) {
-      const prevContent = activeItem.querySelector('.sub__item__bottom');
-      activeItem.classList.remove('is-active');
-      gsap.to(prevContent, { height: 0, opacity: 0, duration: 0.3, overwrite: true });
-    }
-
-    item.classList.add('is-active');
-    const content = item.querySelector('.sub__item__bottom');
-    gsap.to(content, {
-      height: 'auto',
-      opacity: 1,
-      duration: 0.6,
-      ease: "power2.out",
-      overwrite: true,
-      onUpdate: () => {
-        if (!isAutoScrolling) ScrollTrigger.refresh();
-      },
-      onComplete: () => ScrollTrigger.refresh()
-    });
-
-    activeItem = item;
-  }
-});
-
-
-
 
 const hideSubcategoryItem = () => {
   const steps = document.querySelectorAll('.sub__item');
+  if (!steps.length) return;
 
-  const observer = new IntersectionObserver(
-  (entries) => {
+  // Початковий стан: приховуємо контент через GSAP для надійності
+  steps.forEach(step => {
+    const content = step.querySelector('.sub__item__bottom');
+    gsap.set(content, { height: 0, opacity: 0, overflow: "hidden" });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio > 0) {
-        const index = Number(entry.target.dataset.step);
-
-        steps.forEach((step, i) => {
+      // Активуємо блок, коли він заходить в "робочу зону" (центр екрана)
+      if (entry.isIntersecting) {
+        const targetStep = entry.target;
+        
+        steps.forEach((step) => {
           const content = step.querySelector('.sub__item__bottom');
-
-          if (i === index) {
+          
+          if (step === targetStep) {
+		// 				if (window.innerWidth < 1024) {
+    // // Невеликий плавний доїзд, щоб заголовок не ховався за хедер
+		// 						gsap.to(window, {
+		// 								duration: 0.5,
+		// 								scrollTo: { y: step, offsetY: 100 },
+		// 								ease: "power1.inOut"
+		// 						});
+		// 				}
+            // ВІДКРИВАЄМО активний блок
             step.classList.add('is-active');
-            content.style.maxHeight = content.scrollHeight + "px";
+            gsap.to(content, {
+              height: "auto", // GSAP сам вирахує scrollHeight
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.out",
+              overwrite: true
+            });
           } else {
+            // ЗАКРИВАЄМО всі інші
             step.classList.remove('is-active');
-            content.style.maxHeight = "0";
+            gsap.to(content, {
+              height: 0,
+              opacity: 0,
+              duration: 0.4,
+              ease: "power2.inOut",
+              overwrite: true
+            });
           }
         });
       }
     });
-  },
-  {
-    rootMargin: '-20% 0px -20% 0px', 
-    threshold: 0.1 
-  }
-);
-
+  }, {
+    // Зона спрацювання: -30% зверху і знизу екрана (тобто центр)
+    rootMargin: '-30% 0px -30% 0px',
+    threshold: 0.1
+  });
 
   steps.forEach(step => observer.observe(step));
 }
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   gsap.registerPlugin(ScrollTrigger);
+
+//   const items = gsap.utils.toArray('.sub__item');
+//   let activeItem = null;
+
+//   items.forEach((item) => {
+//     const content = item.querySelector('.sub__item__bottom');
+    
+//     // Скидаємо стилі, щоб GSAP мав чистий старт
+//     gsap.set(content, { height: 0, opacity: 0, overflow: 'hidden' });
+
+//     ScrollTrigger.create({
+//       trigger: item,
+//       start: "top 60%", 
+//       end: "bottom 40%",
+//       // fastScrollEnd: true — запобігає "зависанню" анімацій при швидкому скролі
+//       fastScrollEnd: true,
+//       onEnter: () => activate(item),
+//       onEnterBack: () => activate(item),
+//     });
+//   });
+
+//   function activate(item) {
+//     if (activeItem === item) return;
+
+//     // 1. Закриваємо попередній елемент
+//     if (activeItem) {
+//       const prevContent = activeItem.querySelector('.sub__item__bottom');
+//       activeItem.classList.remove('is-active');
+//       gsap.to(prevContent, { 
+//         height: 0, 
+//         opacity: 0, 
+//         duration: 0.3, 
+//         ease: "power1.inOut",
+//         overwrite: true 
+//       });
+//     }
+
+//     // 2. Відкриваємо новий елемент
+//     item.classList.add('is-active');
+//     const content = item.querySelector('.sub__item__bottom');
+    
+//     gsap.to(content, {
+//       height: 'auto',
+//       opacity: 1,
+//       duration: 0.5,
+//       ease: "power2.out",
+//       overwrite: true,
+//       // Refresh виконуємо ТІЛЬКИ після завершення, щоб не було сіпання під час руху
+//       onComplete: () => ScrollTrigger.refresh()
+//     });
+
+//     activeItem = item;
+//   }
+// });
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+//   const items = gsap.utils.toArray('.sub__item');
+//   let activeItem = null;
+//   let isAutoScrolling = false;
+
+//   items.forEach((item) => {
+//     const content = item.querySelector('.sub__item__bottom');
+//     gsap.set(content, { height: 0, opacity: 0, overflow: 'hidden' });
+
+//     ScrollTrigger.create({
+//       trigger: item,
+//       start: "top 60%", 
+//       end: "bottom 40%",
+//       onEnter: () => !isAutoScrolling && activate(item),
+//       onEnterBack: () => !isAutoScrolling && activate(item),
+//     });
+//   });
+
+//   function activate(item) {
+//     if (activeItem === item) return;
+
+//     // Закриваємо попередній
+//     if (activeItem) {
+//       const prevContent = activeItem.querySelector('.sub__item__bottom');
+//       activeItem.classList.remove('is-active');
+//       gsap.to(prevContent, { height: 0, opacity: 0, duration: 0.3, overwrite: true });
+//     }
+
+//     item.classList.add('is-active');
+//     const content = item.querySelector('.sub__item__bottom');
+//     gsap.to(content, {
+//       height: 'auto',
+//       opacity: 1,
+//       duration: 0.6,
+//       ease: "power2.out",
+//       overwrite: true,
+//       onUpdate: () => {
+//         if (!isAutoScrolling) ScrollTrigger.refresh();
+//       },
+//       onComplete: () => ScrollTrigger.refresh()
+//     });
+
+//     activeItem = item;
+//   }
+// });
+
+
+
+
+// const hideSubcategoryItem = () => {
+//   const steps = document.querySelectorAll('.sub__item');
+
+//   const observer = new IntersectionObserver(
+//   (entries) => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting && entry.intersectionRatio > 0) {
+//         const index = Number(entry.target.dataset.step);
+
+//         steps.forEach((step, i) => {
+//           const content = step.querySelector('.sub__item__bottom');
+
+//           if (i === index) {
+//             step.classList.add('is-active');
+//             content.style.maxHeight = content.scrollHeight + "px";
+//           } else {
+//             step.classList.remove('is-active');
+//             content.style.maxHeight = "0";
+//           }
+//         });
+//       }
+//     });
+//   },
+//   {
+//     rootMargin: '-20% 0px -20% 0px', 
+//     threshold: 0.1 
+//   }
+// );
+
+
+//   steps.forEach(step => observer.observe(step));
+// }
 
 
 
