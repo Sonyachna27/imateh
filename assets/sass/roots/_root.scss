@@ -214,8 +214,6 @@ z-index: 1;
 transition: opacity 0.3s ease, transform 0.3s ease;
 pointer-events: none;
 z-index: 2;
-// max-width: fit-content;
-// margin: 0 0 0 auto;
 &.is-hidden {
   opacity: 0;
   pointer-events: none;
