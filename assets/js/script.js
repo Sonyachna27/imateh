@@ -4,82 +4,65 @@ document.addEventListener("DOMContentLoaded", function () {
 	openVideo ();	
 	hideStickyButtonOnScroll();
 	prettyScroll();
-	hideSubcategoryItem();
+	// hideSubcategoryItem();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
 
+  const items = gsap.utils.toArray('.sub__item');
+  let activeItem = null;
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   gsap.registerPlugin(ScrollTrigger);
+  items.forEach((item, index) => {
+    const content = item.querySelector('.sub__item__bottom');
+    gsap.set(content, { height: 0, opacity: 0, overflow: 'hidden' });
 
-//   const items = gsap.utils.toArray('.sub__item');
-//   let activeItem = null;
+    // 2. Створюємо тригер для кожного елемента
+    ScrollTrigger.create({
+      trigger: item,
+      // Активація, коли верх елемента доходить до 60% висоти екрана
+      start: "top 60%", 
+      // Деактивація (опціонально), коли низ елемента йде вище 40%
+      end: "bottom 30%",
+      onEnter: () => activate(item),
+      onEnterBack: () => activate(item),
+      markers: true // увімкни для візуальної перевірки ліній
+    });
+  });
 
-//   function getStartOffset() {
-//     // аналог rootMargin: -20%
-//     return Math.round(window.innerHeight * 0.2);
-//   }
+  function activate(item) {
+    if (activeItem === item) return;
 
-//   items.forEach(item => {
-//     const content = item.querySelector('.sub__item__bottom');
+    // Закриваємо попередній активний елемент
+    if (activeItem) {
+      const prevContent = activeItem.querySelector('.sub__item__bottom');
+      activeItem.classList.remove('is-active');
+      gsap.to(prevContent, { 
+        height: 0, 
+        opacity: 0, 
+        duration: 0.4, 
+        ease: 'power1.inOut' 
+      });
+    }
 
-//     gsap.set(content, {
-//       height: 0,
-//       opacity: 0,
-//       overflow: 'hidden'
-//     });
+    // Відкриваємо поточний елемент
+    item.classList.add('is-active');
+    const content = item.querySelector('.sub__item__bottom');
+    
+    gsap.to(content, {
+      height: 'auto',
+      opacity: 1,
+      duration: 0.5,
+      ease: 'power2.out',
+      overwrite: 'auto',
+      onComplete: () => {
+        ScrollTrigger.refresh();
+      }
+    });
 
-//     ScrollTrigger.create({
-//       trigger: item,
-//       start: () => `top+=${getStartOffset()} center`,
-//       onEnter: () => activate(item),
-//       onEnterBack: () => activate(item),
-//       invalidateOnRefresh: true
-//     });
-//   });
-
-//   function activate(item) {
-//     if (activeItem === item) return;
-
-//     items.forEach(i => {
-//       const c = i.querySelector('.sub__item__bottom');
-
-//       if (i === item) {
-//         i.classList.add('is-active');
-
-//         gsap.to(c, {
-//           height: c.scrollHeight,
-//           opacity: 1,
-//           duration: 0.45,
-//           ease: 'power2.out',
-//           overwrite: 'auto',
-//           onComplete: () => {
-//             gsap.set(c, { height: 'auto' });
-//             ScrollTrigger.refresh();
-//           }
-//         });
-
-//       } else {
-//         i.classList.remove('is-active');
-
-//         gsap.to(c, {
-//           height: 0,
-//           opacity: 0,
-//           duration: 0.35,
-//           ease: 'power2.inOut',
-//           overwrite: 'auto'
-//         });
-//       }
-//     });
-
-//     activeItem = item;
-//   }
-
-//   // 🔒 refresh ТІЛЬКИ коли реально треба
-//   window.addEventListener('orientationchange', () => {
-//     ScrollTrigger.refresh();
-//   });
-// });
+    activeItem = item;
+  }
+});
 
 
 
