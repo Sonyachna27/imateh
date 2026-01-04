@@ -4,118 +4,118 @@ document.addEventListener("DOMContentLoaded", function () {
 	openVideo ();	
 	hideStickyButtonOnScroll();
 	prettyScroll();
-	// hideSubcategoryItem();
+	hideSubcategoryItem();
 });
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger);
+// document.addEventListener("DOMContentLoaded", () => {
+//   gsap.registerPlugin(ScrollTrigger);
 
-  const items = gsap.utils.toArray('.sub__item');
-  let activeItem = null;
+//   const items = gsap.utils.toArray('.sub__item');
+//   let activeItem = null;
 
-  function getStartOffset() {
-    // аналог rootMargin: -20%
-    return Math.round(window.innerHeight * 0.2);
-  }
+//   function getStartOffset() {
+//     // аналог rootMargin: -20%
+//     return Math.round(window.innerHeight * 0.2);
+//   }
 
-  items.forEach(item => {
-    const content = item.querySelector('.sub__item__bottom');
+//   items.forEach(item => {
+//     const content = item.querySelector('.sub__item__bottom');
 
-    gsap.set(content, {
-      height: 0,
-      opacity: 0,
-      overflow: 'hidden'
-    });
+//     gsap.set(content, {
+//       height: 0,
+//       opacity: 0,
+//       overflow: 'hidden'
+//     });
 
-    ScrollTrigger.create({
-      trigger: item,
-      start: () => `top+=${getStartOffset()} center`,
-      onEnter: () => activate(item),
-      onEnterBack: () => activate(item),
-      invalidateOnRefresh: true
-    });
-  });
+//     ScrollTrigger.create({
+//       trigger: item,
+//       start: () => `top+=${getStartOffset()} center`,
+//       onEnter: () => activate(item),
+//       onEnterBack: () => activate(item),
+//       invalidateOnRefresh: true
+//     });
+//   });
 
-  function activate(item) {
-    if (activeItem === item) return;
+//   function activate(item) {
+//     if (activeItem === item) return;
 
-    items.forEach(i => {
-      const c = i.querySelector('.sub__item__bottom');
+//     items.forEach(i => {
+//       const c = i.querySelector('.sub__item__bottom');
 
-      if (i === item) {
-        i.classList.add('is-active');
+//       if (i === item) {
+//         i.classList.add('is-active');
 
-        gsap.to(c, {
-          height: c.scrollHeight,
-          opacity: 1,
-          duration: 0.45,
-          ease: 'power2.out',
-          overwrite: 'auto',
-          onComplete: () => {
-            gsap.set(c, { height: 'auto' });
-            ScrollTrigger.refresh();
-          }
-        });
-
-      } else {
-        i.classList.remove('is-active');
-
-        gsap.to(c, {
-          height: 0,
-          opacity: 0,
-          duration: 0.35,
-          ease: 'power2.inOut',
-          overwrite: 'auto'
-        });
-      }
-    });
-
-    activeItem = item;
-  }
-
-  // 🔒 refresh ТІЛЬКИ коли реально треба
-  window.addEventListener('orientationchange', () => {
-    ScrollTrigger.refresh();
-  });
-});
-
-
-
-
-// const hideSubcategoryItem = () => {
-//   const steps = document.querySelectorAll('.sub__item');
-
-//   const observer = new IntersectionObserver(
-//   (entries) => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting && entry.intersectionRatio > 0) {
-//         const index = Number(entry.target.dataset.step);
-
-//         steps.forEach((step, i) => {
-//           const content = step.querySelector('.sub__item__bottom');
-
-//           if (i === index) {
-//             step.classList.add('is-active');
-//             content.style.maxHeight = content.scrollHeight + "px";
-//           } else {
-//             step.classList.remove('is-active');
-//             content.style.maxHeight = "0";
+//         gsap.to(c, {
+//           height: c.scrollHeight,
+//           opacity: 1,
+//           duration: 0.45,
+//           ease: 'power2.out',
+//           overwrite: 'auto',
+//           onComplete: () => {
+//             gsap.set(c, { height: 'auto' });
+//             ScrollTrigger.refresh();
 //           }
+//         });
+
+//       } else {
+//         i.classList.remove('is-active');
+
+//         gsap.to(c, {
+//           height: 0,
+//           opacity: 0,
+//           duration: 0.35,
+//           ease: 'power2.inOut',
+//           overwrite: 'auto'
 //         });
 //       }
 //     });
-//   },
-//   {
-//     rootMargin: '-20% 0px -20% 0px', 
-//     threshold: 0.1 
+
+//     activeItem = item;
 //   }
-// );
+
+//   // 🔒 refresh ТІЛЬКИ коли реально треба
+//   window.addEventListener('orientationchange', () => {
+//     ScrollTrigger.refresh();
+//   });
+// });
 
 
-//   steps.forEach(step => observer.observe(step));
-// }
+
+
+const hideSubcategoryItem = () => {
+  const steps = document.querySelectorAll('.sub__item');
+
+  const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0) {
+        const index = Number(entry.target.dataset.step);
+
+        steps.forEach((step, i) => {
+          const content = step.querySelector('.sub__item__bottom');
+
+          if (i === index) {
+            step.classList.add('is-active');
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            step.classList.remove('is-active');
+            content.style.maxHeight = "0";
+          }
+        });
+      }
+    });
+  },
+  {
+    rootMargin: '-20% 0px -20% 0px', 
+    threshold: 0.1 
+  }
+);
+
+
+  steps.forEach(step => observer.observe(step));
+}
 
 
 
