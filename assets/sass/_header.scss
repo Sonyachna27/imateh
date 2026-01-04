@@ -1,0 +1,148 @@
+@use './roots/' as *;
+.header{
+	&__container{
+		padding: 18px 0 12px 0;
+		@media screen and (min-width:768px) {
+			padding: 18px 0;
+		}
+	}
+	&__wrap{
+			display: flex;			
+			justify-content: space-between;
+			gap: 12px;
+			flex-wrap: wrap;
+			@media screen and (min-width:768px) {
+				flex-direction: row;
+				align-items: center;
+			}
+			.logo{
+				max-width: 124px;
+				height: auto;
+				@media screen and (min-width:1240px) {
+					max-width: 165px;
+				}
+				@media screen and (max-width:767.9px) {
+					order: 1;
+				}
+				
+			}
+			.burger{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+				position: relative;
+				padding: 10px 20px;
+				border-radius: 100px;
+				border: 2px solid $accent;
+				background-color: $accent-100;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 700;
+				line-height: normal;
+				transition: 600ms ease-out;
+				@media screen and (min-width:1240px) {
+					padding: 21px 29px;
+					font-size: 18px;
+				}
+					&:after{
+						content: '';
+						width: 100%;
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						right: 0;
+						border-radius: 100px;
+						border: 2px solid $accent;
+						background: $gradient;
+						transition: 600ms ease-out;
+						opacity: 0;
+						z-index: -1;
+					}
+					&:hover{
+						background-color: transparent;
+						&:after{
+							opacity: 1;
+						}
+						&:before{
+							transform: translateY(-50%) rotate(0);
+						}
+					}
+					&:active{
+						background-color: $accent-900;
+					&:after{
+						opacity: 0;
+					}
+					}
+					@media screen and (max-width:767.9px) {
+						order: 2;
+						padding: 14px;
+						font-size: 14px;
+					}
+				}
+	}
+	&__btns{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		position: relative;
+		width: fit-content;
+		@media screen and (max-width:767.9px) {
+				max-width: 100%;
+				width: 100%;
+				order: 3;				
+			}
+		.btn{
+			@media screen and (max-width:767.9px) {
+				max-width: 100%;
+				width: 100%;
+				
+			}
+		}
+	}
+
+	nav{
+		margin: 0 auto;
+		@media screen and (max-width:1023.9px) {
+				display: none;
+			}
+		ul{
+			display: flex;
+			align-items: center;
+			gap: 40px;
+			li{
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: normal;			
+				color: $gray;
+				transition: color 600ms ease-out,  border-color 600ms ease-out; 
+				position: relative;
+				@media screen and (min-width:1240px) {
+					font-size: 18px;
+				}
+				&:after{
+					content: '';
+					width: 0%;
+					height: 1px ;
+					background-color: transparent;
+					transition: 600ms ease-out;
+					position: absolute;
+					bottom: -8px;
+					left: 0;
+				}
+				&:hover,
+				&.current-item{
+					color: $accent;
+					&:after{
+						background-color: $accent;
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,37 @@
+@use './roots/' as *;
+.counter{
+	text-align: center;
+	margin-bottom: 414px;
+	@media screen and (min-width:1024px) and (max-width:1239.9px) {
+		margin-bottom: 533px;
+	}
+	@media screen and (min-width:1240px) {
+		margin-bottom: 260px;
+	}
+	h2{
+		color: $white;
+		text-align: center;
+		margin-bottom: 94px;
+		@media screen and (min-width:1024px) {
+			margin-bottom: 60px;
+		}
+	}
+	span{
+		color: rgba(255, 255, 255, 0.02);
+		font-size: 280.63px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 179.603px;
+		letter-spacing: -8.419px;
+		margin: 0 auto;
+		width: fit-content;
+		display: inline-block;
+		@media screen and (min-width:1024px) {
+			font-size: 635.938px;
+			font-style: normal;
+			font-weight: 800;
+			line-height: 407px; /* 64% */
+			letter-spacing: -19.078px;
+		}
+	}
+}
