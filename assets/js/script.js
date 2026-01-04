@@ -11,103 +11,53 @@ const hideSubcategoryItem = () => {
   const steps = document.querySelectorAll('.sub__item');
   if (!steps.length) return;
 
-  // Реєструємо плагін (обов'язково має бути підключений ScrollTrigger.min.js)
-  gsap.registerPlugin(ScrollTrigger);
-
-  steps.forEach((step) => {
+  // Початковий стан: приховуємо контент через GSAP для надійності
+  steps.forEach(step => {
     const content = step.querySelector('.sub__item__bottom');
-    
-    // 1. Початковий стан
     gsap.set(content, { height: 0, opacity: 0, overflow: "hidden" });
-
-    // 2. Створюємо таймлайн для кожного блоку
-    const tl = gsap.timeline({
-      paused: true,
-      defaults: { ease: "none" } // Для scrub краще використовувати none або power1
-    });
-
-    tl.to(content, { 
-      height: "auto", 
-      opacity: 1,
-      duration: 1 
-    });
-
-    // 3. Прив'язуємо таймлайн до скролу через ScrollTrigger
-    ScrollTrigger.create({
-      trigger: step,
-      start: "top 60%",    // Починає відкриватися, коли верх блоку на 60% висоти екрана
-      end: "top 20%",      // Повністю відкритий, коли верх блоку на 30% екрана
-      scrub:.5,          // Цей параметр згладжує анімацію (0.5 сек "наздоганяє" скрол)
-      animation: tl,
-      onToggle: self => {
-        step.classList.toggle('is-active', self.isActive);
-      },
-      // markers: true,    // Розкоментуйте цю строку, щоб побачити лінію спрацювання (для тесту)
-    });
-
-    // 4. Окремий тригер для закриття, коли блок іде далі вгору
-    ScrollTrigger.create({
-      trigger: step,
-      start: "bottom 30%", // Починає закриватися, коли низ блоку вище 30% екрана
-      end: "bottom 10%",   // Повністю закритий
-      scrub: 1,
-      animation: gsap.to(content, { height: 0, opacity: 0, paused: true }),
-      overwrite: "auto"
-    });
   });
 
-  // Оновлюємо ScrollTrigger після рендеру, щоб він точно знав висоту контенту
-  ScrollTrigger.refresh();
-};
-
-
-// const hideSubcategoryItem = () => {
-//   const steps = document.querySelectorAll('.sub__item');
-//   if (!steps.length) return;
-
-//   steps.forEach(step => {
-//     const content = step.querySelector('.sub__item__bottom');
-//     gsap.set(content, { height: 0, opacity: 0, overflow: "hidden" });
-//   });
-
-//   const observer = new IntersectionObserver((entries) => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting) {
-//         const targetStep = entry.target;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Активуємо блок, коли він заходить в "робочу зону" (центр екрана)
+      if (entry.isIntersecting) {
+        const targetStep = entry.target;
         
-//         steps.forEach((step) => {
-//           const content = step.querySelector('.sub__item__bottom');
+        steps.forEach((step) => {
+          const content = step.querySelector('.sub__item__bottom');
           
-//           if (step === targetStep) {
-//             step.classList.add('is-active');
-//             gsap.to(content, {
-//               height: "auto", 
-//               opacity: 1,
-//               duration: 0.6,
-//               ease: "power2.out",
-//               overwrite: true
-//             });
-//           } else {
-//             step.classList.remove('is-active');
-//             gsap.to(content, {
-//               height: 0,
-//               opacity: 0,
-//               duration: 0.4,
-//               ease: "power2.inOut",
-//               overwrite: true
-//             });
-//           }
-//         });
-//       }
-//     });
-//   }, {
-//     // Зона спрацювання: -30% зверху і знизу екрана (тобто центр)
-//     rootMargin: '-20% 0px -20% 0px',
-//     threshold: 0.2
-//   });
+          if (step === targetStep) {
+            // ВІДКРИВАЄМО активний блок
+            step.classList.add('is-active');
+            gsap.to(content, {
+              height: "auto", // GSAP сам вирахує scrollHeight
+              opacity: 1,
+              duration: 0.6,
+              ease: "power2.out",
+              overwrite: true
+            });
+          } else {
+            // ЗАКРИВАЄМО всі інші
+            step.classList.remove('is-active');
+            gsap.to(content, {
+              height: 0,
+              opacity: 0,
+              duration: 0.4,
+              ease: "power2.inOut",
+              overwrite: true
+            });
+          }
+        });
+      }
+    });
+  }, {
+    // Зона спрацювання: -30% зверху і знизу екрана (тобто центр)
+    rootMargin: '-30% 0px -30% 0px',
+    threshold: 0
+  });
 
-//   steps.forEach(step => observer.observe(step));
-// }
+  steps.forEach(step => observer.observe(step));
+}
 
 
 // document.addEventListener("DOMContentLoaded", () => {
