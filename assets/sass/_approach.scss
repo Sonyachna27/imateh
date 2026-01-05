@@ -1,0 +1,30 @@
+@use './roots/' as *;
+.approach{
+	margin-bottom: 108px;
+		@media screen and (min-width:1024px) {
+			margin-bottom: 240px;
+		}
+		&__container{
+			max-width: 100%;
+			width: 100%;
+			text-align: left;
+		}
+	h2{
+		color: $white-500;
+		margin-bottom: 32px;
+		@media screen and (min-width:1024px) {
+			margin-bottom: 40px;
+		}
+	}
+	p{
+		@media screen and (min-width:1024px) {
+			font-size: 22px;
+			letter-spacing: -0.66px;
+		}
+		span{
+			color: $accent-100;
+			text-transform: uppercase;
+		}
+
+	}
+}

@@ -5,13 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	hideStickyButtonOnScroll();
 	prettyScroll();
 	hideSubcategoryItem();
+	teamSliderInit();
 });
 
 const hideSubcategoryItem = () => {
   const steps = document.querySelectorAll('.sub__item');
   if (!steps.length) return;
-
-  // Початковий стан: приховуємо контент через GSAP для надійності
   steps.forEach(step => {
     const content = step.querySelector('.sub__item__bottom');
     gsap.set(content, { height: 0, opacity: 0, overflow: "hidden" });
@@ -345,6 +344,47 @@ const accordionFunction = () => {
 				item.classList.toggle("active");
 			});
 		}
+  });
+};
+
+const teamSliderInit = () => {
+  const teamSlider = document.querySelector('.teamSlider');
+  if (!teamSlider) return;
+
+  const teamSliderSwiper = new Swiper(teamSlider, {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    centeredSlides: true,       // 🔥 центральний слайд
+    centeredSlidesBounds: true, // щоб не виїжджав за край
+    watchOverflow: true,
+		loop:true,
+
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        centeredSlides: true
+      },
+      480: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        centeredSlides: true
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 23,
+        centeredSlides: false   // ⬅️ на tablet вже краще вимкнути
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 23,
+        centeredSlides: true
+      }
+    },
+
+    navigation: {
+      nextEl: ".team-button-next",
+      prevEl: ".team-button-prev",
+    },
   });
 };
 

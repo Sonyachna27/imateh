@@ -29,8 +29,11 @@ span{
   gap: 12px;
   color: $accent-100;
   font-weight: 500;
-  white-space: nowrap;
+  vertical-align: middle;
 	text-transform: uppercase;
+	@media screen and (min-width:1024px) {
+		white-space: nowrap;
+	}
 }
 
 img{
