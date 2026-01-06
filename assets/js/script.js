@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	prettyScroll();
 	hideSubcategoryItem();
 	teamSliderInit();
+	individualSliderInit();
 });
-
 const hideSubcategoryItem = () => {
   const steps = document.querySelectorAll('.sub__item');
   if (!steps.length) return;
@@ -387,4 +387,50 @@ const teamSliderInit = () => {
     },
   });
 };
+
+const individualSliderInit = () => {
+  const individualSlider = document.querySelector('.individualSlider');
+  if (!individualSlider) return;
+
+  // Знаходимо слайди правильно (через пробіл)
+  const slides = individualSlider.querySelectorAll('.swiper-slide');
+  const paginationContainer = document.querySelector('.individual-pagination');
+  if (!paginationContainer) return;
+
+  // Вибираємо тільки ті елементи, які є кнопками (пропускаємо крапки-декор)
+  const steps = paginationContainer.querySelectorAll('.pagination-step');
+
+  const individualSliderSwiper = new Swiper(individualSlider, {
+    direction: 'horizontal',
+    slidesPerView: 1,
+    spaceBetween: 16,
+    autoHeight: true,
+    breakpoints: {
+      1024: {
+        direction: 'vertical',
+        slidesPerView: 1,
+        spaceBetween: 23,
+      },
+    },
+  });
+
+  // Обновлюємо активний крок при зміні слайду
+  individualSliderSwiper.on('slideChange', () => {
+    const currentIndex = individualSliderSwiper.activeIndex;
+    
+    steps.forEach((step, i) => {
+      // Переконуємось, що індекс слайда відповідає індексу кроку
+      step.classList.toggle('is-active', i === currentIndex);
+    });
+  });
+
+  // Клік по кроку пагінації
+  steps.forEach((step, index) => {
+    step.addEventListener('click', () => {
+      individualSliderSwiper.slideTo(index);
+    });
+  });
+};
+
+
 
