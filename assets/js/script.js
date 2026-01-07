@@ -388,49 +388,150 @@ const teamSliderInit = () => {
   });
 };
 
+// const individualSliderInit = () => {
+//   const individualSlider = document.querySelector('.individualSlider');
+//   if (!individualSlider) return;
+
+//   const slides = individualSlider.querySelectorAll('.swiper-slide');
+//   const paginationContainer = document.querySelector('.individual-pagination');
+//   if (!paginationContainer || !slides.length) return;
+//   // Динамічне створення пагінації (якщо потрібно)
+//   paginationContainer.innerHTML = '<span class="pagination-dot"></span>';
+//   slides.forEach(() => {
+//     const step = document.createElement('span');
+//     step.classList.add('pagination-step');
+//     paginationContainer.appendChild(step);
+//   });
+//   paginationContainer.insertAdjacentHTML('beforeend', '<span class="pagination-dot"></span>');
+
+//   const steps = paginationContainer.querySelectorAll('.pagination-step');
+
+//   const swiper = new Swiper(individualSlider, {
+//     direction: 'horizontal',
+//     slidesPerView: 1,
+//     spaceBetween: 16,
+//     autoHeight: true,
+//     grabCursor: true,
+    
+//     // ДОДАЄМО ПІДТРИМКУ КОЛЕСА МИШІ
+//     mousewheel: {
+//       forceToAxis: true, // дозволяє скролити сторінку, якщо мишка рухається горизонтально
+//       sensitivity: .5,    // чутливість (можна збільшити, якщо скролить повільно)
+//     },
+
+//     keyboard: {
+//       enabled: true,     // також додаємо керування клавішами
+//     },
+
+//     breakpoints: {
+//       1024: {
+//         direction: 'vertical',
+//         spaceBetween: 23,
+//       },
+//     },
+	
+//     on: {
+//       // Спрацьовує при зміні слайда (фінальна стадія)
+//       slideChange: function() {
+//         steps.forEach((step, i) => {
+//           step.classList.toggle('is-active', i === this.activeIndex);
+//         });
+//       },
+      
+//       // Спрацьовує в реальному часі при русі мишки/пальця
+//       setTranslate: function() {
+//          const prg = Math.max(0, Math.min(1, this.progress)); 
+        
+//         // 2. Оновлюємо CSS-змінну для псевдоелемента ::after
+//         paginationContainer.style.setProperty('--progress', prg);
+        
+//         // 3. Підсвічуємо блоки
+//         if (activeIndex >= 0 && activeIndex < steps.length) {
+//           steps.forEach((step, i) => {
+//             step.classList.toggle('is-active', i === activeIndex);
+//           });
+//         }
+//       }
+//     }
+//   });
+
+//   steps.forEach((step, index) => {
+//     step.addEventListener('click', () => swiper.slideTo(index));
+//   });
+// };
+
+
+
 const individualSliderInit = () => {
   const individualSlider = document.querySelector('.individualSlider');
   if (!individualSlider) return;
 
-  // Знаходимо слайди правильно (через пробіл)
   const slides = individualSlider.querySelectorAll('.swiper-slide');
   const paginationContainer = document.querySelector('.individual-pagination');
-  if (!paginationContainer) return;
+  if (!paginationContainer || !slides.length) return;
 
-  // Вибираємо тільки ті елементи, які є кнопками (пропускаємо крапки-декор)
+  // Твоя генерація блоків (не чіпаємо)
+  paginationContainer.innerHTML = '<span class="pagination-dot"></span>';
+  slides.forEach(() => {
+    const step = document.createElement('span');
+    step.classList.add('pagination-step');
+    paginationContainer.appendChild(step);
+  });
+  paginationContainer.insertAdjacentHTML('beforeend', '<span class="pagination-dot"></span>');
+
   const steps = paginationContainer.querySelectorAll('.pagination-step');
 
-  const individualSliderSwiper = new Swiper(individualSlider, {
+  const swiper = new Swiper(individualSlider, {
     direction: 'horizontal',
     slidesPerView: 1,
     spaceBetween: 16,
     autoHeight: true,
+    grabCursor: true,
+    watchSlidesProgress: true, // Додано для коректної роботи градієнта
+    
+    mousewheel: {
+      forceToAxis: true,
+      sensitivity: 1, // Збільшено до 1, щоб скрол був чіткішим
+      releaseOnEdges: true, // Дозволяє скролити сторінку далі, коли слайди закінчились
+    },
+
+    keyboard: {
+      enabled: true,
+    },
+
     breakpoints: {
       1024: {
         direction: 'vertical',
-        slidesPerView: 1,
         spaceBetween: 23,
       },
     },
+  
+    on: {
+      slideChange: function() {
+        steps.forEach((step, i) => {
+          step.classList.toggle('is-active', i === this.activeIndex);
+        });
+      },
+      
+      setTranslate: function() {
+        const prg = Math.max(0, Math.min(1, this.progress)); 
+        
+        // Оновлюємо CSS-змінну для твого ::after
+        paginationContainer.style.setProperty('--progress', prg);
+        
+        // ВИПРАВЛЕННЯ: оголошуємо activeIndex (його не було в коді, тому він міг ламати скрол)
+        const activeIndex = Math.round(prg * (slides.length - 1));
+        
+        if (activeIndex >= 0 && activeIndex < steps.length) {
+          steps.forEach((step, i) => {
+            step.classList.toggle('is-active', i === activeIndex);
+          });
+        }
+      }
+    }
   });
 
-  // Обновлюємо активний крок при зміні слайду
-  individualSliderSwiper.on('slideChange', () => {
-    const currentIndex = individualSliderSwiper.activeIndex;
-    
-    steps.forEach((step, i) => {
-      // Переконуємось, що індекс слайда відповідає індексу кроку
-      step.classList.toggle('is-active', i === currentIndex);
-    });
-  });
-
-  // Клік по кроку пагінації
   steps.forEach((step, index) => {
-    step.addEventListener('click', () => {
-      individualSliderSwiper.slideTo(index);
-    });
+    step.addEventListener('click', () => swiper.slideTo(index));
   });
 };
-
-
-

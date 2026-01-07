@@ -14,9 +14,9 @@
 		@media screen and (min-width:1024px) {
 			width: 57%;
 			height: 391px;
-			.chief-ind & {
+			// .chief-ind & {
 				width: 49%;
-			}
+			// }
 		}
 		@media screen and (min-width:1525px) {
 			margin-right: -29px;
@@ -78,10 +78,10 @@
 			width: 49%;
 		}
 		@media screen and (min-width:1240px) {
-			width: 46%;
-			.chief-ind & {
+			// width: 46%;
+			// .chief-ind & {
 				width: 50%;
-			}
+			// }
 		}
 
 		h1{
