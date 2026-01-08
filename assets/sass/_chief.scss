@@ -11,59 +11,30 @@
 		position: relative;
 		width: 100%;		
 		overflow: hidden;
-		@media screen and (min-width:1024px) {
-			width: 57%;
-			height: 391px;
-			// .chief-ind & {
-				width: 49%;
-			// }
+		display: flex;
+		align-items: center;
+		@media screen and (min-width:1024px) {	
+				width: 50%;
 		}
-		@media screen and (min-width:1525px) {
-			margin-right: -29px;
-		}
-		&:before{
-			content: '';
-			width: 108px;
-			position: absolute;
-			top: 0;
-			left: -18px;
-			height: 100%;
-			z-index: 1;
-			background: linear-gradient(90deg, #171517 39.94%, rgba(23, 21, 23, 0.00) 78.15%);
-		@media screen and (min-width:1024px) and (max-width:1239.9px) {
-			width: 513px;
-			left: -223px;
-			background:  linear-gradient(90deg, #171517 39.94%, rgba(23, 21, 23, 0.00) 78.15%);;
-		}
-		@media screen and (min-width:1240px) {
-			width: 220px;
-			left: -123px;
-		}
-		}
+
 		img{
-			aspect-ratio: 7 / 4;
+			aspect-ratio: 17 / 10;
 			max-width: 100%;
-			width: calc(100% - 30px);
-			margin-left: auto;
+			width: 100%;
+			margin: auto;
+
 			@media screen and (min-width:1024px) {
-			min-width: 700px;
-			max-width: 700px;
-			height: 391px;
-			position: absolute;
-			top: 0;
-			right: 0px;
+			
+			max-width: 676px;
 		}
 		}
 	}
 	&__container{
-		max-width: 1450px;
-		width: 100%;
-		padding: 0 0 0 18px;
-		margin: 0 auto;
 		display: flex;
 		flex-direction: column-reverse;
 		@media screen and (min-width:1024px) {
 			flex-direction: row;
+			justify-content: space-between;
 		}
 		@media screen and (max-width:1023.9px) {
 			gap: 40px;
@@ -78,10 +49,7 @@
 			width: 49%;
 		}
 		@media screen and (min-width:1240px) {
-			// width: 46%;
-			// .chief-ind & {
 				width: 50%;
-			// }
 		}
 
 		h1{
@@ -111,7 +79,6 @@
 			strong{
 				color: $white;
 			}
-
 		}
 		& .btn{
 			max-width: 320px;
@@ -119,6 +86,4 @@
 			justify-content: flex-start;
 		}
 	}
-	
-	
 }
