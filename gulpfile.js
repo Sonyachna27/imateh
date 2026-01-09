@@ -95,13 +95,13 @@ function styles() {
     return src([`assets/${preprocessor}/*.*`, `!assets/${preprocessor}/_*.*`])
 
     .pipe(eval(`${preprocessor}glob`)())
-        .pipe(sass().on('error', sass.logError))
-        // .pipe(
-				// 	sass().on('error', function (err) {
-				// 		console.error(err.messageFormatted || err.message);
-				// 		this.emit('end');
-				// 	})
-				// )
+        // .pipe(sass().on('error', sass.logError))
+        .pipe(
+					sass().on('error', function (err) {
+						console.error(err.messageFormatted || err.message);
+						this.emit('end');
+					})
+				)
         .pipe(eval(preprocessor)({ 'include css': true }))
         .pipe(postCss([
             autoprefixer({ grid: 'autoplace' }),

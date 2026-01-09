@@ -487,12 +487,11 @@ const individualSliderInit = () => {
     spaceBetween: 16,
     autoHeight: true,
     grabCursor: true,
-    watchSlidesProgress: true, // Додано для коректної роботи градієнта
-    
+    watchSlidesProgress: true,     
     mousewheel: {
       forceToAxis: true,
-      sensitivity: 1, // Збільшено до 1, щоб скрол був чіткішим
-      releaseOnEdges: true, // Дозволяє скролити сторінку далі, коли слайди закінчились
+      sensitivity: 1,
+      releaseOnEdges: true,  
     },
 
     keyboard: {
@@ -516,10 +515,8 @@ const individualSliderInit = () => {
       setTranslate: function() {
         const prg = Math.max(0, Math.min(1, this.progress)); 
         
-        // Оновлюємо CSS-змінну для твого ::after
         paginationContainer.style.setProperty('--progress', prg);
         
-        // ВИПРАВЛЕННЯ: оголошуємо activeIndex (його не було в коді, тому він міг ламати скрол)
         const activeIndex = Math.round(prg * (slides.length - 1));
         
         if (activeIndex >= 0 && activeIndex < steps.length) {

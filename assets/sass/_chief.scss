@@ -1,12 +1,29 @@
 @use './roots/' as *;
 .chief{
 	position: relative;
-	margin-bottom: 180px;
-	margin-top: 20px;
+	padding-bottom: 180px;
+	padding-top: 20px;
 	@media screen and (min-width:1024px) {
-		margin-bottom: 200px;
-			margin-top: 90px;
+		padding-bottom: 200px;
+			padding-top: 90px;
 	}
+	&.chief-bg {
+			&::after{
+				    background: url(../images/bg-vector.svg) 50% / contain no-repeat;
+    background-color: #171517;
+    content: "";
+    height: 115%;
+    left: -14%;
+    opacity: .3;
+    position: absolute;
+    top: -31%;
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    width: 124%;
+    z-index: -1;
+			}
+		}
 	&__img{
 		position: relative;
 		width: 100%;		
@@ -18,20 +35,21 @@
 		}
 
 		img{
-			aspect-ratio: 17 / 10;
 			max-width: 100%;
 			width: 100%;
 			margin: auto;
 
-			@media screen and (min-width:1024px) {
-			
+			@media screen and (min-width:1024px) {			
 			max-width: 676px;
 		}
 		}
 	}
 	&__container{
+		position: relative;
+		z-index: 2;
 		display: flex;
 		flex-direction: column-reverse;
+		
 		@media screen and (min-width:1024px) {
 			flex-direction: row;
 			justify-content: space-between;
@@ -76,7 +94,7 @@
 					margin-bottom: 60px;
 				}
 			}
-			strong{
+			strong, a, span{
 				color: $white;
 			}
 		}
