@@ -1,24 +1,39 @@
 @use './roots/' as *;
 .chief{
 	position: relative;
-	padding-bottom: 180px;
-	padding-top: 20px;
+	margin-bottom: 180px;
+	margin-top: 20px;
 	@media screen and (min-width:1024px) {
-		padding-bottom: 200px;
-			padding-top: 90px;
+		margin-bottom: 200px;
+			margin-top: 90px;
 	}
 	&.chief-bg {
+		margin-top: 60px;
+		--img-height: 0px;
 			&::after{
-				background: url(../images/Vector-new.svg) 50% / cover no-repeat;
-				
+				background-image: url(../images/Vector-new.svg) ;
+				background-position: -30% 0;
+				background-size: cover;
+				background-repeat: no-repeat;
 				content: "";
-				height: 100%;
-				left: 50%;
+				height: calc(var(--img-height) + 60px);
+				left: 0%;
 				position: absolute;
-				top: -134px;
-				transform: translateX(-50%);
+				top: -60px;
+				transform: translateX(-0%);
 				width: 100%;
 				z-index: -1;
+				@media screen and (min-width:1024px) {
+					height: calc(100% + 134px);
+					left: 50%;
+					top: -134px;
+					transform: translateX(-50%);
+					left: 50%;
+					width: 100%;
+					background-position: center;
+					background-size: contain;
+				}
+
 			}
 		}
 	&__img{

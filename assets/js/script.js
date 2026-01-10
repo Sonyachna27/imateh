@@ -8,7 +8,29 @@ document.addEventListener("DOMContentLoaded", function () {
 	teamSliderInit();
 	individualSliderInit();
 	openTabs();
+updateHeight();
+
 });
+const updateHeight = () =>{
+
+const parent = document.querySelector('.chief-bg');
+const childImg = document.querySelector('.chief__img');
+if(!parent || !childImg) return;
+if(innerWidth >= 1024) return;
+function updateHeight() {
+  if (parent && childImg) {
+    const imgHeight = childImg.offsetHeight;
+    parent.style.setProperty('--img-height', `${imgHeight}px`);
+  }
+}
+
+window.addEventListener('resize', updateHeight);
+window.addEventListener('load', updateHeight);
+}
+
+
+
+
 const hideSubcategoryItem = () => {
   const steps = document.querySelectorAll('.sub__item');
   if (!steps.length) return;
@@ -34,17 +56,18 @@ const hideSubcategoryItem = () => {
               opacity: 1,
               duration: 0.6,
               ease: "power2.out",
-              overwrite: true
+              overwrite: true,
+							onUpdate: ScrollTrigger.refresh
             });
           } else {
-            // ЗАКРИВАЄМО всі інші
             step.classList.remove('is-active');
             gsap.to(content, {
               height: 0,
               opacity: 0,
               duration: 0.4,
               ease: "power2.inOut",
-              overwrite: true
+              overwrite: true,
+							onUpdate: ScrollTrigger.refresh
             });
           }
         });
@@ -381,6 +404,14 @@ const teamSliderInit = () => {
         centeredSlides: true
       }
     },
+		on: {
+			slideChange() {
+				ScrollTrigger.refresh();
+			},
+			breakpoint() {
+				ScrollTrigger.refresh();
+			}
+		},
 
     navigation: {
       nextEl: ".team-button-next",
@@ -388,78 +419,6 @@ const teamSliderInit = () => {
     },
   });
 };
-
-// const individualSliderInit = () => {
-//   const individualSlider = document.querySelector('.individualSlider');
-//   if (!individualSlider) return;
-
-//   const slides = individualSlider.querySelectorAll('.swiper-slide');
-//   const paginationContainer = document.querySelector('.individual-pagination');
-//   if (!paginationContainer || !slides.length) return;
-//   // Динамічне створення пагінації (якщо потрібно)
-//   paginationContainer.innerHTML = '<span class="pagination-dot"></span>';
-//   slides.forEach(() => {
-//     const step = document.createElement('span');
-//     step.classList.add('pagination-step');
-//     paginationContainer.appendChild(step);
-//   });
-//   paginationContainer.insertAdjacentHTML('beforeend', '<span class="pagination-dot"></span>');
-
-//   const steps = paginationContainer.querySelectorAll('.pagination-step');
-
-//   const swiper = new Swiper(individualSlider, {
-//     direction: 'horizontal',
-//     slidesPerView: 1,
-//     spaceBetween: 16,
-//     autoHeight: true,
-//     grabCursor: true,
-    
-//     // ДОДАЄМО ПІДТРИМКУ КОЛЕСА МИШІ
-//     mousewheel: {
-//       forceToAxis: true, // дозволяє скролити сторінку, якщо мишка рухається горизонтально
-//       sensitivity: .5,    // чутливість (можна збільшити, якщо скролить повільно)
-//     },
-
-//     keyboard: {
-//       enabled: true,     // також додаємо керування клавішами
-//     },
-
-//     breakpoints: {
-//       1024: {
-//         direction: 'vertical',
-//         spaceBetween: 23,
-//       },
-//     },
-	
-//     on: {
-//       // Спрацьовує при зміні слайда (фінальна стадія)
-//       slideChange: function() {
-//         steps.forEach((step, i) => {
-//           step.classList.toggle('is-active', i === this.activeIndex);
-//         });
-//       },
-      
-//       // Спрацьовує в реальному часі при русі мишки/пальця
-//       setTranslate: function() {
-//          const prg = Math.max(0, Math.min(1, this.progress)); 
-        
-//         // 2. Оновлюємо CSS-змінну для псевдоелемента ::after
-//         paginationContainer.style.setProperty('--progress', prg);
-        
-//         // 3. Підсвічуємо блоки
-//         if (activeIndex >= 0 && activeIndex < steps.length) {
-//           steps.forEach((step, i) => {
-//             step.classList.toggle('is-active', i === activeIndex);
-//           });
-//         }
-//       }
-//     }
-//   });
-
-//   steps.forEach((step, index) => {
-//     step.addEventListener('click', () => swiper.slideTo(index));
-//   });
-// };
 
 
 
@@ -471,7 +430,6 @@ const individualSliderInit = () => {
   const paginationContainer = document.querySelector('.individual-pagination');
   if (!paginationContainer || !slides.length) return;
 
-  // Твоя генерація блоків (не чіпаємо)
   paginationContainer.innerHTML = '<span class="pagination-dot"></span>';
   slides.forEach(() => {
     const step = document.createElement('span');
@@ -507,7 +465,12 @@ const individualSliderInit = () => {
     },
   
     on: {
+				breakpoint() {
+					ScrollTrigger.refresh();
+				},
+
       slideChange: function() {
+				ScrollTrigger.refresh();
         steps.forEach((step, i) => {
           step.classList.toggle('is-active', i === this.activeIndex);
         });
@@ -535,20 +498,18 @@ const individualSliderInit = () => {
 };
 
 const openTabs = () => {
-  const tabGroups = document.querySelectorAll(".target__wrap"); 
+  const tabGroups = document.querySelectorAll(".implant__tabs");
 
   tabGroups.forEach((group) => {
-    const tabsLinks = group.querySelectorAll(".target__list-item");
-    const allContentBlocks = group.querySelectorAll(".target__content");
-    let frontBlockId = tabsLinks[0].dataset.name; 
+    const tabsLinks = group.querySelectorAll(".implant__list-item");
+    const allContentBlocks = group.querySelectorAll(".implant__content");
+    let frontBlockId = tabsLinks[0].dataset.name;
 
     function addTabsActive() {
       tabsLinks.forEach((button, index) => {
         button.addEventListener("click", () => {
-          tabsLinks.forEach((otherButton) => {
-            otherButton.classList.remove("active");
-          });
-          button.classList.add("active");
+          if (button.classList.contains("active")) return;
+
           showContent(button.dataset.name, index);
         });
       });
@@ -556,22 +517,16 @@ const openTabs = () => {
 
     function updateActiveTab(index) {
       tabsLinks.forEach((button, i) => {
-        if (i === index) {
-          button.classList.add("active");
-        } else {
-          button.classList.remove("active");
-        }
+        button.classList.toggle("active", i === index);
       });
     }
 
     function changeSlide(blockId) {
       allContentBlocks.forEach((block) => {
         if (block.getAttribute("id") === blockId) {
-          block.style.display = "flex";
-          block.style.opacity = 1;
+          block.classList.add("active");
         } else {
-          block.style.opacity = 0;
-          block.style.display = "none";
+          block.classList.remove("active");
         }
       });
       frontBlockId = blockId;
@@ -583,6 +538,7 @@ const openTabs = () => {
     }
 
     addTabsActive();
-    showContent(frontBlockId, 0); 
+    // Ініціалізація першого табу
+    showContent(frontBlockId, 0);
   });
 };
