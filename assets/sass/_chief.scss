@@ -9,17 +9,16 @@
 	}
 	&.chief-bg {
 			&::after{
-				    background: url(../images/Vector-new.svg) 50% / contain no-repeat;
-    background-color: #171517;
-    content: "";
-    height: calc(100% + 206px);
-    left: 50%;
-    opacity: .3;
-    position: absolute;
-    top: -206px;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: -1;
+				background: url(../images/Vector-new.svg) 50% / cover no-repeat;
+				
+				content: "";
+				height: 100%;
+				left: 50%;
+				position: absolute;
+				top: -134px;
+				transform: translateX(-50%);
+				width: 100%;
+				z-index: -1;
 			}
 		}
 	&__img{
