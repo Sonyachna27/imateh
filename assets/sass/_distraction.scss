@@ -1,0 +1,132 @@
+@use './roots/' as *;
+.distraction{
+	margin-bottom: 180px;
+	@media screen and (min-width:992px) {
+		margin-bottom: 240px;
+	}
+	&__title{
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		max-width: 995px;
+		margin: 0 auto;
+		margin-bottom: 44px;
+		h2{
+			margin-bottom: 28px;
+		}
+		p{
+			color: $gray;
+			text-align: center;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 140%;
+			@media screen and (min-width:992px) {
+				font-size: 18px;
+			}
+			&:not(:nth-last-of-type(1)){
+				margin-bottom: 20px;
+			}
+		}
+	}
+	&__items{
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+
+	}
+	&__item{
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		padding: 18px;
+		background-color: $black-200;
+		border-radius: 24px;
+		@media screen and (min-width:992px) {
+			flex-direction: row;
+			padding: 32px;
+			justify-content: space-between;
+		}
+		&__img{
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			justify-content: center;
+			
+			@media screen and (min-width:992px) {
+				width: 34%;
+				max-width: 312px;
+			
+			}
+			@media screen and (min-width:992px) and (max-width:1239.9px) {
+				width: 34%;
+			}
+			@media screen and (min-width:1240px) {
+				width: 29%;
+			}
+			&__title{
+				display: flex;
+				flex-direction: column;
+				h3{
+					font-size: 24px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 32px;
+				}
+				span{
+					font-size: 14px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 32px;
+					color: $gray;
+				}
+			}
+			img{
+				aspect-ratio: 3 / 2;
+				@media screen and (min-width:992px) {
+				aspect-ratio: 9 / 4;
+				}
+			}
+			.btn{
+				gap: 8px;
+				max-width: 100%;
+				width: 100%;
+				padding: 15px 30px;
+				&:before{
+					content: none;
+				}
+			}
+		}
+		&__info{
+			p{
+				color: $gray;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 140%;
+				margin-bottom: 40px;
+				&:nth-last-of-type(1){
+					margin-bottom: 40px;
+				}
+				@media screen and (min-width:992px) {
+					font-size: 16px;
+					margin-bottom: 18px;
+				}
+			}
+			@media screen and (min-width:992px) {
+				width: 58%;
+			}
+			div{
+				font-size: 18px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 32px;
+				margin-bottom: 24px;
+				@media screen and (min-width:992px) {
+					font-size: 20px;
+					line-height: 28px;
+				}
+			}
+		}
+	}
+}

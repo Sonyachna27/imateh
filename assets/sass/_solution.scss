@@ -1,0 +1,63 @@
+@use './roots/' as *;
+.solution{
+	margin-bottom: 240px;
+	&__title{
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		text-align: left;
+		max-width: 900px;
+		margin: 0 auto;
+		margin-bottom: 40px;
+		@media screen and (min-width:1024px) {
+			text-align: center;
+		}
+		
+	}
+	&__items{
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		@media screen and (min-width:1024px) {
+			display: grid;	
+			gap: 40px;		
+		}
+		@media screen and (min-width:1024px) and (max-width:1239.9px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media screen and (min-width:1240px) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+	&__item{
+		display: flex;		
+		gap: 40px;
+		border-radius: 40px;
+		background: $black-200;
+		padding: 25px;
+
+		@media screen and (min-width:992px) {
+			flex-direction: column;
+			gap: 66px;
+		}
+		@media screen and (max-width:991.9px) {
+			align-items: center;
+		}
+		img{
+			max-width: 70px;
+			width: 100%;
+			@media screen and (min-width:1024px) {
+				max-width: 95px;
+			}
+		}
+		p{
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 120%;
+			@media screen and (min-width:1024px) {
+				font-size: 22px;
+			}
+		}
+	}
+}

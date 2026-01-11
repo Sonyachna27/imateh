@@ -131,9 +131,7 @@
   overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
 	width:100%;
-	@media screen and (max-width:991.9px)  {
-		// margin-right: -18px;
-	}
+
 	&::-webkit-scrollbar {
     height: 4px; /* Висота горизонтального скролу */
   }
