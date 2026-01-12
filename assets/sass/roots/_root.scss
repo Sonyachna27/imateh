@@ -15,9 +15,24 @@
 	font-weight: 600;
 }
 @font-face {
-	font-family: "InterTight-SemiBold";
+	font-family: "Inter";
+	src: url(../fonts/InterTight-Regular.ttf);
+	font-weight: 400;
+}
+@font-face {
+	font-family: "Inter";
+	src: url(../fonts/InterTight-Medium.ttf);
+	font-weight: 500;
+}
+@font-face {
+	font-family: "Inter";
 	src: url(../fonts/InterTight-SemiBold.ttf);
 	font-weight: 600;
+}
+@font-face {
+	font-family: "Inter";
+	src: url(../fonts/InterTight-Bold.ttf);
+	font-weight: 700;
 }
  
 .drawing-path {
@@ -42,21 +57,21 @@ animation: draw 3s ease forwards;
 	$gray-100:#7D7D7D;
 	$gray-200:rgba(172, 172, 172, 0.20);
 	$gray-300:#4B4B4B;
+	$gray-400:#4B4B4B;
 	$white: #fff;
 	$white-100: rgba(255, 255, 255, 0.10);
 	$white-200: rgba(255, 255, 255, 0.02);
 	$white-400: rgba(255, 255, 255, 0.04);
 	$white-500:#EBFBFF;
 	$white-600:#E8EEF1;
-
+	$white-700:#D1D1D1;
 	$accent:#5EBEF1;
-
 	$accent-100:#9ADCFF;
 	$accent-200:#E4F1FC;
 	$accent-300:#0577B4;
 	$accent-900:#3796C8;
 	$gradient: linear-gradient(231deg, #E4F1FC 1.26%, #9ADCFF 22.36%, #5EBEF1 66.67%, #0577B4 93.25%);
-
+	$stroke:#E6E9EA;
 
 h1{
 	text-align: center;
@@ -224,6 +239,44 @@ body{
 			background-color: $white-100;
 		}
 	}
+	&.btn-third{
+			border: 2px solid $accent;
+			background-color: $accent-100;
+			color: $black;
+			font-size: 18px;
+			gap: 8px;
+			padding: 15px;
+			@media screen and (min-width:1240px) {
+				padding: 18px 30px;
+			}
+				&:after{
+				content: '';
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				border-radius: 100px;
+				border: 2px solid $accent;
+				background: $gradient;
+				transition: 600ms ease-out;
+				opacity: 0;
+				z-index: -1;
+			}
+	&:hover{
+		background-color: transparent;
+		&:after{
+			opacity: 1;
+		}
+	}
+	&:active{
+		background-color: $accent-900;
+	&:after{
+		opacity: 0;
+	}
+	}
+	}
 }
 main{
 	position: relative;
@@ -331,7 +384,9 @@ z-index: 2;
 				font-weight: 400;
 				line-height: 28px;
 			}
-			&-list{
+			
+}
+ul.catalogue-list{
 				display: flex;
 				flex-direction: column;
 				gap: 18px;
@@ -356,7 +411,6 @@ z-index: 2;
 					}
 				}
 			}
-}
 ul.list{
 	display: flex;
 	flex-direction: column;
@@ -404,48 +458,44 @@ ul.list{
 	}
 }
 
-// .breadcrumbs{
-// 	padding: 24px 0px;
-// 	position: relative;
-
-// 	@media screen and (min-width:768px) {
-// 	padding: 32px 0px;
-// 	}
-
-// 	&__container{
-// 		display: flex;
-// 		gap: 8px;
-// 		align-items: center;
-// 		flex-wrap: wrap;
-// 	}
-
-// 		a{
-// 			color: $gray-100;
-// 			font-size: 14px;
-// 			font-style: normal;
-// 			font-weight: 400;
-// 			line-height: 21px;
-// 			transition: background-size 600ms ease-out;
-// 			text-decoration: none;
-// 			background-image: linear-gradient($black, $black);
-// 			background-repeat: no-repeat;
-// 			background-size: 0% 1px;
-// 			background-position: 0 100%;
-
-// 			&:hover {
-// 				background-size: 100% 1px;
-// 			}		
-// 		}
-// 		span{
-// 			font-size: 14px;
-// 			font-style: normal;
-// 			font-weight: 400;
-// 			line-height: 21px;				
-// 			&:nth-last-of-type(1){
-// 				color: $black;
-// 			}
-// 		}
-// }
+.breadcrumbs{
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 9px;
+	z-index: 2;
+	@media screen and (min-width:1024px) and (max-width:1239.9px) {
+		margin-bottom: 123px;
+	}
+	@media screen and (min-width:1240px) {
+		margin-bottom: 103px;
+	}
+		a{
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 20px; /* 142.857% */
+			letter-spacing: -0.15px;
+			color: #FFF;
+			text-align: center;
+			font-family: "Inter", sans-serif;
+			&:hover {
+				color: $accent-100;
+				svg path{
+					stroke: $accent-100;
+				}
+			}		
+		}
+		svg{
+			width: 16px;
+			height: 16px;
+			path{
+				transition: 600ms ease-out;
+			}
+		}
+		
+}
 // .accord {
 //     display: flex;
 //     flex-direction: column;
@@ -593,7 +643,7 @@ form{
 				aspect-ratio: 1;
 				width: 100%;
 				height: 100%;
-				border: 1px solid var(--Stroke, #E6E9EA);
+				border: 1px solid $stroke;
 				padding: 3px;
 				accent-color: $accent;
 				transition: 600ms ease-out;
