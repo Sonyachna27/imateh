@@ -15,28 +15,33 @@
 	font-weight: 600;
 }
 @font-face {
+	font-family: "Manrope";
+	src: url(../fonts/Manrope-Bold.ttf);
+	font-weight: 700;
+}
+@font-face {
 	font-family: "Inter";
-	src: url(../fonts/InterTight-ExtraLight.ttf);
+	src: url(../fonts/Inter_18pt-ExtraLight.ttf);
 	font-weight: 200;
 }
 @font-face {
 	font-family: "Inter";
-	src: url(../fonts/InterTight-Regular.ttf);
+	src: url(../fonts/Inter_18pt-Regular.ttf);
 	font-weight: 400;
 }
 @font-face {
 	font-family: "Inter";
-	src: url(../fonts/InterTight-Medium.ttf);
+	src: url(../fonts/Inter_18pt-Medium.ttf);
 	font-weight: 500;
 }
 @font-face {
 	font-family: "Inter";
-	src: url(../fonts/InterTight-SemiBold.ttf);
+	src: url(../fonts/Inter_18pt-SemiBold.ttf);
 	font-weight: 600;
 }
 @font-face {
 	font-family: "Inter";
-	src: url(../fonts/InterTight-Bold.ttf);
+	src: url(../fonts/Inter_18pt-Bold.ttf);
 	font-weight: 700;
 }
  
@@ -180,6 +185,7 @@ body{
 		font-size: 18px;
 		padding: 18px 40px;
 	}
+	
 	&.btn-primary{
 			border: 2px solid $accent;
 			background-color: $accent-100;
@@ -187,6 +193,9 @@ body{
 			font-size: 18px;
 			@media screen and (min-width:1240px) {
 				padding: 18px 68px 18px 40px;
+			}
+			@media screen and (max-width:1239.9px) {
+				padding: 10px 68px 10px 40px;
 			}
 			&:after{
 				content: '';
