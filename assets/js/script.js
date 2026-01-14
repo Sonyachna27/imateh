@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	individualSliderInit();
 	openTabs();
 updateHeight();
-
+menuItemsOpen();
 });
 const updateHeight = () =>{
 
@@ -531,14 +531,53 @@ const openTabs = () => {
       });
       frontBlockId = blockId;
     }
-
     function showContent(itemName, index) {
       changeSlide(itemName);
       updateActiveTab(index);
     }
-
     addTabsActive();
-    // Ініціалізація першого табу
     showContent(frontBlockId, 0);
   });
+};
+
+const menuItemsOpen = () => {
+    const menuWrap = document.querySelector('.menu__wrap');
+    const menuItems = menuWrap.querySelectorAll('.menu-item');
+    const firstMenuItem = menuItems[0];
+    let firstHover = true; 
+
+    if (!menuWrap || !menuItems.length) return;
+
+    const setFirstOpen = () => firstMenuItem.classList.add('open-first');
+    const removeFirstOpen = () => firstMenuItem.classList.remove('open-first');
+
+    const highlightItem = (index) => {
+        menuItems.forEach((li, i) => {
+            const a = li.querySelector('a');
+            if (!a) return;
+        });
+    };
+
+    setFirstOpen();
+    highlightItem(0);
+
+    menuWrap.addEventListener('mousemove', (e) => {
+        const targetLi = e.target.closest('.menu-item');
+        if (targetLi) {
+            const index = Array.from(menuItems).indexOf(targetLi);
+            highlightItem(index);
+            removeFirstOpen();
+            firstHover = false;
+        } else if (!firstHover) {
+            highlightItem(0);
+            setFirstOpen();
+            firstHover = true;
+        }
+    });
+
+    menuWrap.addEventListener('mouseleave', () => {
+        highlightItem(0);
+        setFirstOpen();
+        firstHover = true;
+    });
 };
