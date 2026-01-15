@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   toggleMenu();
-	accordionFunction();
 	openVideo ();	
 	hideStickyButtonOnScroll();
 	prettyScroll();
@@ -8,8 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	teamSliderInit();
 	individualSliderInit();
 	openTabs();
-updateHeight();
-menuItemsOpen();
+	updateHeight();
+	accordionFunction();
+	initDesktopHover();
+    initMobileAccordion();
 });
 const updateHeight = () =>{
 
@@ -342,23 +343,6 @@ const prettyScroll = () => {
 
 
 
-// const openMenu = () => {
-//   const windowWidth = window.innerWidth;
-//   const menuLinks = document.querySelectorAll('header li:has(.sub-menu)');
-
-//     menuLinks.forEach((link) => {
-//       const subMenu = link.querySelector('.sub-menu');
-//       if (!link.dataset.listener) {
-//         link.addEventListener("click", (event) => {
-//           event.stopPropagation();
-//           link.classList.toggle("active");
-//         });
-//         link.dataset.listener = "true"; 
-//       }
-//     });
-  
-// };
-
 const accordionFunction = () => {
   const accordionItems = document.querySelectorAll(".accord-item");
   accordionItems.forEach((item) => {
@@ -419,7 +403,6 @@ const teamSliderInit = () => {
     },
   });
 };
-
 
 
 const individualSliderInit = () => {
@@ -540,44 +523,69 @@ const openTabs = () => {
   });
 };
 
-const menuItemsOpen = () => {
+const initDesktopHover = () => {
     const menuWrap = document.querySelector('.menu__wrap');
-    const menuItems = menuWrap.querySelectorAll('.menu-item');
-    const firstMenuItem = menuItems[0];
-    let firstHover = true; 
+    if (!menuWrap) return;
 
-    if (!menuWrap || !menuItems.length) return;
+    const menuItems = menuWrap.querySelectorAll('.menu-item');
+    if (!menuItems.length) return;
+
+    const firstMenuItem = menuItems[0];
+    let firstHover = true;
 
     const setFirstOpen = () => firstMenuItem.classList.add('open-first');
     const removeFirstOpen = () => firstMenuItem.classList.remove('open-first');
 
-    const highlightItem = (index) => {
-        menuItems.forEach((li, i) => {
-            const a = li.querySelector('a');
-            if (!a) return;
-        });
-    };
-
     setFirstOpen();
-    highlightItem(0);
 
     menuWrap.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 1024) return;
+
         const targetLi = e.target.closest('.menu-item');
         if (targetLi) {
-            const index = Array.from(menuItems).indexOf(targetLi);
-            highlightItem(index);
             removeFirstOpen();
             firstHover = false;
         } else if (!firstHover) {
-            highlightItem(0);
             setFirstOpen();
             firstHover = true;
         }
     });
 
     menuWrap.addEventListener('mouseleave', () => {
-        highlightItem(0);
+        if (window.innerWidth < 1024) return;
         setFirstOpen();
         firstHover = true;
     });
 };
+
+const initMobileAccordion = () => {
+    const menuItems = document.querySelectorAll('.menu-item-has-children');
+
+    menuItems.forEach(item => {
+        const link = item.querySelector('a');
+
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth >= 1024) return; 
+            
+            e.stopPropagation();
+            const isActive = item.classList.contains('active');
+            if (!isActive) {
+                e.preventDefault();
+                item.classList.add('active');
+            }
+        });
+
+        item.addEventListener('click', () => {
+            if (window.innerWidth >= 1024) return;
+            item.classList.toggle('active');
+        });
+    });
+};
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 1023) {
+        document.querySelectorAll('.menu-item-has-children').forEach(el => {
+            el.classList.remove('active');
+        });
+    }
+});

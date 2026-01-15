@@ -120,6 +120,21 @@ html.open-filter{
 	overflow: hidden;
 }
 
+html {
+    &::-webkit-scrollbar {
+        width: 10px !important; 
+        display: block !important;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #171517 !important; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #9ADCFF !important;
+        border-radius: 10px !important;
+    }
+}
 .container{
 	max-width: 1392px;
 	width: 100%;

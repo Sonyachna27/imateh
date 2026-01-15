@@ -1,4 +1,7 @@
 @use './roots/' as *;
+
+
+
 .header{
 	&__container{
 		padding: 18px 0 12px 0;
@@ -72,15 +75,32 @@
 					}
 					&:active{
 						background-color: $accent-900;
+					}
 					&:after{
 						opacity: 0;
 					}
+					.open &{
+						.dots-grid {
+								opacity: 0;
+							}
+							.line {
+								opacity: 1;
+							}
 					}
+					.line {
+							opacity: 0;
+							transition:600ms;
+						}
+						
+						.dots-grid {
+							transition:600ms ease-out;
+						}
 					@media screen and (max-width:767.9px) {
 						order: 2;
 						padding: 14px;
 						font-size: 14px;
 					}
+					
 				}
 	}
 	&__btns{
@@ -106,6 +126,10 @@
 
 	nav:not(.menu__wrap nav){
 		margin: 0 auto;
+		transition: 600ms ease-out;
+		.open &{
+			opacity: 0;
+		}
 		@media screen and (max-width:1023.9px) {
 				display: none;
 			}
@@ -151,29 +175,32 @@ $transition-linear: .3s linear;
     .menu{
 				&__wrap {
 						position: absolute;
-						top: 106px;
+						top: 71px;
 						left: 0;
 						width: 100%;
 						max-width: 100vw;
 						z-index: 20;
-						height: calc(100vh - 106px);
+						height: calc(100vh - 71px);
 						overflow: hidden;
 						overflow-y: auto;
 						padding-top: 24px;
-						// display: flex;
-						// flex-direction: column;
 						background-color: $black;
 						opacity: 0;
 						visibility: hidden;
 						transition: $transition-linear;
-			
+							display: flex;
+							flex-direction: column;
+							gap: 32px;
 							@media screen and (min-width:1024px) {
 								display: grid;
-												
+								top: 106px;
+									height: calc(100vh - 106px);
+									gap: 0;
+										grid-template-rows: 170px 1fr;
 							}
 							@media screen and (min-width:1024px) and (max-width:1239.9px){
-								
 								grid-template-columns: 22% 78%;	
+							
 												
 							}
 							@media screen and (min-width:1240px){						
@@ -182,7 +209,31 @@ $transition-linear: .3s linear;
 							.open & {
 								opacity: 1;
 								visibility: visible;
-						}
+							}
+						
+							scrollbar-width: thin;        
+							scrollbar-color: #9ADCFF rgba(255, 255, 255, 0.1); 
+
+							&::-webkit-scrollbar {
+								width: 6px; 
+								height: 6px;
+							}
+
+							&::-webkit-scrollbar-track {
+								background: rgba(255, 255, 255, 0.05); 
+								border-radius: 10px;
+							}
+
+							&::-webkit-scrollbar-thumb {
+								background-color: #9ADCFF;   
+								border-radius: 10px;         
+								border: 1px solid transparent; 
+								
+								&:hover {
+									background-color:$accent;
+								}
+							}
+						
 						}
         &-top {
             padding: 16px 0 32px;
@@ -190,7 +241,8 @@ $transition-linear: .3s linear;
 						order: 1;
             @media screen and (min-width:1024px) {
 							grid-row: 1 / 1;
-							grid-column: 1 / 1;											
+							grid-column: 1 / 1;		
+							height: fit-content;									
 						}
             & > ul {
                 display: flex;
@@ -223,7 +275,8 @@ $transition-linear: .3s linear;
 					padding: 32px 0;
 						display: flex;
 						flex-direction: column;
-						gap: 16px;
+						gap: 20px;
+						order: 3;
 					@media screen and (min-width:1024px) {
 							grid-row: 2 / 2;
 							grid-column: 1 / 1;					
@@ -249,9 +302,10 @@ $transition-linear: .3s linear;
             ul {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 8px;
+                gap: 24px;
 								@media screen and (min-width:1024px) {
 									flex-direction: column;
+									gap: 8px;
 								}
                 a {
                    font-size: 16px;
@@ -271,13 +325,16 @@ $transition-linear: .3s linear;
             }
         }
 				&__left {
+					order: 2;
 						z-index: 10;       
-						overflow-y: auto;
-						scrollbar-width: none;
-						-ms-overflow-style: none;
 						display: flex;
 						flex-direction: column;
 						gap: 24px;
+						height: auto;
+						@media screen and (max-width:1023.9px) {
+							padding: 0 0 32px 0;
+							border-bottom: 1px solid rgba(255, 255, 255, 0.10);	
+						}
 						@media screen and (min-width:1024px) {							
 							grid-row: 1 / 3;
 							grid-column: 2 / 3;	
@@ -290,7 +347,6 @@ $transition-linear: .3s linear;
 						@media screen and (min-width:1240px) {
 							padding-left: 32px;
 						}
-
 						&::-webkit-scrollbar { display: none; }
 						span{
 							padding: 10px 16px;
@@ -308,17 +364,61 @@ $transition-linear: .3s linear;
 								line-height: 20px; 
 							}
 						}
+						.menu-item-has-children.active{
+								.sub-menu-wrapper{
+									visibility: visible;
+									opacity: 0;
+									max-height: 5000px;
+									overflow: visible;
+									opacity: 1;
+									padding: 32px 0 0 0 ;
+									margin-top:-16px;
+									transition: margin-top 400ms linear,opacity 400ms linear, transform 400ms linear, max-height 400ms linear, visibility 400ms linear, padding 400ms linear;	
+
+								}
+							}
 						ul:not(.sub-menu){
 							display: flex;
 							flex-direction: column;
 							gap: 8px;
 							width: 100%;
-							
+							transition: 600ms linear;
 							a{
 								display: inline-block;
+								position: relative;								
+								transition: 600ms ease-out;
+								height: fit-content;
+								font-size: 18px;
+								font-style: normal;
+								font-weight: 500;
+								line-height: 26px;
+								width: fit-content;
 								@media screen and (min-width:1024px) {
 									width:42%;
+									padding: 15px 24px;
+									border-radius: 15px;
+									border-radius: 12px;
+										&:after{
+										content: '';
+										width: 24px;
+										height: 24px;
+										position: absolute;
+										top: 50%;
+										transform: translateY(-50%);
+										right: 24px;
+										opacity: 0;
+										transition: 600ms ease-out;
+										background: url('../images/header-icon.svg') center center / 24px no-repeat;
+									}
 								}
+									&:hover{										
+										@media screen and (min-width:1024px) {
+											color: $white;
+											background-color: rgba(255, 255, 255, 0.10);
+										}
+									}
+								
+								
 							}
 							>	li{
 									font-size: 20px;
@@ -327,11 +427,15 @@ $transition-linear: .3s linear;
 									line-height: 26px;
 									color: $gray;
 									width: 100%;
-									&:hover,
+									@media screen and (min-width:1024px) {
+										&:hover,
 									&.open-first{
 										> a{
-											color: $white;
-											background-color: rgba(255, 255, 255, 0.10);
+											color: $accent;
+											@media screen and (min-width:1024px) {
+												color: $white;
+												background-color: rgba(255, 255, 255, 0.10);
+											}
 											&:after{
 												opacity: 1;
 											}
@@ -339,54 +443,69 @@ $transition-linear: .3s linear;
 										.sub-menu-wrapper{
 											opacity: 1;
 											visibility: visible;
+											@media screen and (max-width:1023.9px) {
+												max-height: 5000px;
+												will-change: height 600ms ease-out;
+											}
 										}
 									}
-									a{
-										position: relative;
-										padding: 15px 24px;
-										border-radius: 15px;
-										border-radius: 12px;
-										transition: 600ms ease-out;
-										height: fit-content;
-										font-size: 18px;
-										font-style: normal;
-										font-weight: 500;
-										line-height: 26px;
-											&:hover{
-												color: $white;
-												background-color: rgba(255, 255, 255, 0.10);
-											
-											}
-											&:after{
-												content: '';
-												width: 24px;
-												height: 24px;
-												position: absolute;
-												top: 50%;
-												transform: translateY(-50%);
-												right: 24px;
-												opacity: 0;
-												transition: 600ms ease-out;
-												background: url('../images/header-icon.svg') center center / 24px no-repeat;
-											}
+									}
+									
+									&:has(ul){
+										@media screen and (max-width:1024px) {
+											position: relative;
+											padding: 16px 0;
+												&:after{
+													content: '';
+													width: 20px;
+													height: 20px;
+													position: absolute;
+													top: 19px;
+													right: 0px;
+													transition: 600ms ease-out;
+													background: url('../images/icon.svg') center center / 16px no-repeat;
+												}
+												&.active{
+													&:after{
+														transform: rotate(180deg);
+													}
+												}
+										}
 									}
 									
 								}
-							.sub-menu-wrapper{
+							
+							
+						}
+						.sub-menu-wrapper{
+								@media screen and (max-width:1023.9px) {
+									   	transition: all 300ms linear;
+											will-change: opacity, max-height, visibility;				
+											visibility: hidden;
+											opacity: 0;
+											max-height: 0;
+											overflow: hidden;
+											will-change: opacity, max-height;
+									transition: margin-top 400ms linear,opacity 400ms linear, transform 400ms linear, max-height 400ms linear, visibility 400ms linear, padding 400ms linear;	
+																		
+								}
 								@media screen and (min-width:1024px) {
 									border-radius: 32px;
 									border: 1px solid rgba(255, 255, 255, 0.05);
 									background-color: $black-200;
 									display: flex;
 									flex-direction: column;
-									gap: 24px;
-									
+									gap: 24px;									
 									opacity: 0;
 									visibility: hidden;
 									height: fit-content;
 									position: absolute;
 									top: 24px;
 									right: 0;
+									min-height: 527px;
+									max-height: 527px;
+									overflow: hidden;
+									overflow-y: auto;
 									&:hover{
 										opacity: 1;
 										visibility: visible;
@@ -402,18 +521,28 @@ $transition-linear: .3s linear;
 									padding: 33px;
 									width: calc(43.5% - 32px);
 								}
+								.sub-menu-header{
+									font-size: 24px;
+									font-style: normal;
+									font-weight: 500;
+									line-height: 31.2px;
+									padding-bottom: 24px;
+									border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+									color: $white;
+									@media screen and (max-width:1023.9px) {
+										display: none;
+									}
+								}
 							}
-							
-						}
 						.sub-menu{
-								
-								gap: 15px;
+								display: flex;
+								flex-direction: column;
+								gap: 12px;
 								width: 100%;
 								
 								li{
 									position: relative;
-									padding: 0;
-									padding-left:26px;
+									padding: 8px 8px 8px 26px;
 									font-size: 16px;
 									font-style: normal;
 									font-weight: 400;
@@ -442,7 +571,7 @@ $transition-linear: .3s linear;
 									font-style: normal;
 									font-weight: 400;
 									line-height: 22.4px;
-									width: 100%;
+									width: fit-content;
 									&:hover{
 										background-color: transparent;
 										color: $accent-100;
