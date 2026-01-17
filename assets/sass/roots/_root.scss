@@ -45,24 +45,12 @@
 	font-weight: 700;
 }
  
-.drawing-path {
- 
-  stroke-dasharray: 400; 
-  stroke-dashoffset: 400;
-  -webkit-animation: draw 3s ease forwards;
-animation: draw 3s ease forwards;
 
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
 
 	$black: #171517;
 	$black-100: #333;
 	$black-200: #1C1A1C;
+	$black-300: #2A2A2A;
 	$gray:#B1B1B1;
 	$gray-100:#7D7D7D;
 	$gray-200:rgba(172, 172, 172, 0.20);

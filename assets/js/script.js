@@ -11,7 +11,58 @@ document.addEventListener("DOMContentLoaded", function () {
 	accordionFunction();
 	initDesktopHover();
     initMobileAccordion();
+		openImageTabs();
+		initCounterHover();
 });
+const initCounterHover = () => {
+    const textItems = document.querySelectorAll('.counter__content__item');
+    const knobs = document.querySelectorAll('.knob');
+    const svgItems = document.querySelectorAll('.item'); // наші SVG
+    const images = document.querySelectorAll('.counter-img');
+    const allGroups = [textItems, knobs, svgItems, images];
+
+    const activate = (index) => {
+        allGroups.forEach(group => {
+            group.forEach((el, i) => {
+                if (i === index) {
+                    el.classList.add('active');
+                    el.classList.remove('unactive');
+                } else {
+                    el.classList.add('unactive');
+                    el.classList.remove('active');
+                }
+            });
+        });
+    };
+
+    // Функція для скидання (якщо треба повернути початковий стан без unactive)
+    const reset = () => {
+        allGroups.forEach(group => {
+            group.forEach(el => {
+                el.classList.remove('active');
+                el.classList.remove('unactive');
+            });
+        });
+    };
+
+    textItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => activate(index));
+        item.addEventListener('click', () => activate(index));
+    });
+
+    knobs.forEach((knob, index) => {
+        knob.addEventListener('mouseenter', () => activate(index));
+        knob.addEventListener('click', () => activate(index));
+    });
+
+    // Якщо хочеш, щоб при виході мишки з усього блоку стилі скидалися:
+    const container = document.querySelector('.counter__content');
+    container.addEventListener('mouseleave', reset);
+};
+
+
+
+
 const updateHeight = () =>{
 
 const parent = document.querySelector('.chief-bg');
@@ -522,6 +573,48 @@ const openTabs = () => {
     showContent(frontBlockId, 0);
   });
 };
+const openImageTabs = () => {
+  const tabGroups = document.querySelectorAll(".target__wrap");
+
+  tabGroups.forEach((group) => {
+    const tabsLinks = group.querySelectorAll(".target__list-item");
+    const allContentBlocks = group.querySelectorAll(".target__content");
+    let frontBlockId = tabsLinks[0].dataset.name;
+
+    function addTabsActive() {
+      tabsLinks.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          if (button.classList.contains("active")) return;
+
+          showContent(button.dataset.name, index);
+        });
+      });
+    }
+
+    function updateActiveTab(index) {
+      tabsLinks.forEach((button, i) => {
+        button.classList.toggle("active", i === index);
+      });
+    }
+
+    function changeSlide(blockId) {
+      allContentBlocks.forEach((block) => {
+        if (block.getAttribute("id") === blockId) {
+          block.classList.add("active");
+        } else {
+          block.classList.remove("active");
+        }
+      });
+      frontBlockId = blockId;
+    }
+    function showContent(itemName, index) {
+      changeSlide(itemName);
+      updateActiveTab(index);
+    }
+    addTabsActive();
+    showContent(frontBlockId, 0);
+  });
+};
 
 const initDesktopHover = () => {
     const menuWrap = document.querySelector('.menu__wrap');
@@ -560,7 +653,6 @@ const initDesktopHover = () => {
 
 const initMobileAccordion = () => {
     const menuItems = document.querySelectorAll('.menu-item-has-children');
-
     menuItems.forEach(item => {
         const link = item.querySelector('a');
 
