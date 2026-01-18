@@ -213,6 +213,27 @@ body{
 				opacity: 0;
 				z-index: -1;
 			}
+			&.btn-back{
+				border-radius: 100px;
+				border: 1px solid $gray-300;
+
+				background: $black-200;
+				padding: 10px 40px 10px 73px;
+				color: $gray-300;
+				&:before{
+
+					left: 40px;
+					transform: translateY(-50%) rotate(0deg);
+					background-image: url('../images/arrow-gray.svg');
+				}
+				&:hover{
+					color: $black;
+					&:before{
+						filter: brightness(0);
+						transform: translateY(-50%) rotate(45deg);
+					}
+				}
+			}
 	&:hover{
 		background-color: transparent;
 		&:after{
@@ -582,7 +603,7 @@ form{
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
-	input{
+	input, textarea{
 		padding: 23px 32px;
 		border-radius: 60px;
 		background-color: $white-400;
@@ -612,6 +633,11 @@ form{
 				opacity: 0;
 			}
 		}
+	}
+	textarea{
+		border-radius: 20px;
+		padding: 20px 32px;
+		resize: none;
 	}
 	label{
 		position: relative;

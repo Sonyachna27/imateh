@@ -55,7 +55,7 @@
 			color: #252325;
 		}
 		&__info{
-			div{
+			div:not([class]){
 				font-size: 18px;
 				font-style: normal;
 				font-weight: 500;
@@ -111,15 +111,45 @@
 		}
 		form{
 			display: flex;
-			flex-direction: column;
 			gap: 18px;
+			flex-wrap: wrap;
+			flex-direction: row;
 			@media screen and (min-width:922px) {
 				gap: 40px;
 			}
+				label{
+					font-size: 18px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 120%; /* 21.6px */
+					letter-spacing: -0.72px;
+					margin: 0;				
+				}
+				input[type="checkbox"]{
+					&:after{
+						border-radius: 4px;
+					background-color: #252325;
+					border-color: transparent;
+					background-size: 15px;
+						&:checked:after {							
+							background-image: url(../images/checkbox-vector.svg);
+						}
+					}
+				}
+				textarea{
+					min-height: 164px;				
+					@media screen and (min-width:992px) and (max-width:1239.9px){
+						min-height: 130px;
+					}
+					@media screen and (min-width:1240px) {
+						min-height: 410px;
+					}
+				}
 			.form__row{
 				display: flex;
 				align-items: center;
 				gap: 18px;
+				flex-direction: column;
 				@media screen and (min-width:922px) {
 				gap: 40px;
 				display: grid;
@@ -130,10 +160,45 @@
 			@media screen and (min-width:1240px) {
 				grid-template-columns: repeat(3, 1fr);
 			}
-			label{
+			&:nth-of-type(2){
+				padding-bottom: 40px;
+				border-bottom: 1px solid $black-100;
+			}
+			
+			}
+			input[type="date"]{
+				appearance: none; // Прибираємо стандартний вигляд у Safari/iOS
+				-webkit-appearance: none;				
+				width: 100%;
+				font-size: 16px;
+				outline: none;
+				transition: border-color 0.3s ease;
+				color: $gray-300;
+				&::-webkit-calendar-picker-indicator {
+					cursor: pointer;
+					background-image: url('../images/calendar.svg');
+					background-repeat: no-repeat;
+					background-position: center;
+					width: 24px;
+					height: 24px;
+					padding: 5px;
+				}
+				
+				&::-webkit-clear-button {
+					display: none;
+				}
+			
+				&::before {
+					content: attr(placeholder); 
+					color: $gray-300;
+					display: none; 
+				}
+			}
+				.form__group{
 				display: flex;
 				flex-direction: column;
 				gap: 12px;
+				width: 100%;
 				span{
 					font-size: 16px;
 					font-style: normal;
@@ -145,11 +210,82 @@
 						color: #FF5F57;
 					}
 				}
-				input:placeholder{
-					color: gray-300;
+				input{
+					font-size: 18px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 120%; 
+					letter-spacing: -0.72px;
+					&::placeholder{
+						font-size: 18px;
+						font-style: normal;
+						font-weight: 400;
+						line-height: 120%; /* 21.6px */
+						letter-spacing: -0.72px;
+						color: $gray-300;
+					}
+				}
+				input::placeholder{
+					color: $gray-300;
+				}
+				&:has(textarea){
+						@media screen and (min-width:1240px) {
+						width: 41%;
+					}
+				}
+				&__wrap{
+					display: flex;
+					align-items: center;
+					gap: 6px;
+					div{
+						font-size: 12px;
+						font-style: normal;
+						font-weight: 400;
+						line-height: 120%; 
+						letter-spacing: -0.48px;
+						margin-bottom: 0;
+						color: $gray;
+					}
+				}
+			
+			}
+			.form__checkboxes{
+				display: flex;
+				flex-direction: column;
+				gap: 18px;
+				@media screen and (min-width:992px) {
+					width: 37%;
+					margin-right: auto;
 				}
 			}
+			.form__wrapper{
+				width: 100%;
+				display: flex;
+			gap: 40px;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: space-between;
+				padding-bottom: 40px;
+				border-bottom: 1px solid $gray-100;
 			}
-		}
+		}	
 	}
+		&__btns{
+			display: flex;
+			align-items: center;
+			gap: 18px;
+			.btn.btn-primary{
+				@media screen  and (min-width:992px){
+					padding: 18px 68px 18px 40px;
+				}
+				&.btn-back{
+					padding: 10px 40px 10px 73px;
+				@media screen and (min-width:992px) {
+					padding: 18px 40px 18px 73px;
+				}
+				
+			}
+			}
+			
+		}
 }

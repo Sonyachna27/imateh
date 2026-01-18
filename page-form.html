@@ -146,8 +146,8 @@
 				<h2>Завантажити КТ</h2>
 			</div>
 			<div class="form__block">
-			<div class="form__block__progress" data-total-steps="5"> 
-					<div class="simple">Крок <span id="current-step">1</span> з <span id="total-steps-display">5</span></div>
+			<div class="form__block__progress" data-total-steps="3"> 
+					<div class="simple">Крок <span id="current-step">1</span> з <span id="total-steps-display">3</span></div>
 					<div class="progress">
 						<div class="progress-track">
 							<div id="progress-fill" class="progress-fill">
@@ -175,8 +175,74 @@
 				<h2>Заповнити деталі кейсу</h2>
 			</div>
 			<div class="form__block">
-			<div class="form__block__progress" data-total-steps="5"> 
-					<div class="simple">Крок <span id="current-step">2</span> з <span id="total-steps-display">5</span></div>
+			<div class="form__block__progress" data-total-steps="3"> 
+					<div class="simple">Крок <span id="current-step">2</span> з <span id="total-steps-display">3</span></div>
+					<div class="progress">
+						<div class="progress-track">
+							<div id="progress-fill" class="progress-fill">
+								<span class="value" id="progress-percent">0%</span>
+							</div>							
+						</div>						
+					</div>
+				</div>
+				<div class="form__block__info">
+					<div>Інформація про кейс</div>
+						<form action="#">
+							<div class="form__row">
+								<div class="form__group">
+									<span>Компанія/Клініка<span>*</span></span>
+									<input type="text" name="form__clinic" placeholder="Введіть назву компанії/клініки">
+								</div>
+							</div>
+							<div class="form__row">
+								<div class="form__group">
+									<span>ПІБ відповідальної особи/хірурга<span>*</span></span>
+									<input type="text" name="form__person" placeholder="Введіть ім`я та прізвище">
+								</div>
+								<div class="form__group">
+									<span>Номер телефону<span>*</span></span>
+									<input type="tel" name="form__phone" placeholder="Введіть номер телефону">
+								</div>
+								<div class="form__group">
+									<span>Email<span>*</span></span>
+									<input type="email" name="form__email" placeholder="Введіть ваш емейл">
+								</div>
+							</div>
+							<div class="form__row">
+								<div class="form__group">
+									<div class="form__group__wrap">
+									<span>Ініціали пацієнта<span>*</span></span>
+									<div>(до 3 символів)</div>
+									</div>
+									<input type="text" name="form__patient" placeholder="Введіть ініціали пацієнта">
+								</div>
+								<div class="form__group">
+									<span>Дата операції</span>
+									<label for="form__date">										
+										<input type="checkbox" id="form__date">
+										Не заплановано
+									</label>
+								</div>
+								<div class="form__group">
+									<span>Дата операції<span>*</span></span>
+									<input type="date" name="form__datetime" placeholder="дд.мм.рр">
+								</div>
+							</div>
+						</form>
+				</div>
+				<div class="form__btns">
+				<a href="#" class="btn btn-primary btn-back">Назад</a>
+				<a href="#" class="btn btn-primary">Далі</a>
+				</div>
+			</div>
+		</div>
+		<div class="form__container">
+			<div class="form__title">
+				<h2>Заповнити деталі кейсу</h2>
+			</div>
+			<div class="form__block">
+			<div class="form__block__progress" data-total-steps="3"> 
+					<div class="simple">Крок <span id="current-step">3</span> з <span id="total-steps-display">3</span></div>
 					<div class="progress">
 						<div class="progress-track">
 							<div id="progress-fill" class="progress-fill">
@@ -187,13 +253,55 @@
 					</div>
 				</div>
 				<div class="form__block__info">
-					<div>Інформація про кейс</div>
+					<div>Оберіть напрямок</div>
 						<form action="#">
-							<div class="form__row">
-								<label>
-									<span>Компанія/Клініка<span>*</span></span>
-									<input type="text" name="form__clinic" placeholder="Введіть назву компанії/клініки">
-								</label>
+							<div class="form__wrapper">
+							<div class="form__checkboxes">
+								<label for="form__plate">										
+										<input type="checkbox" id="form__plate">
+										Краніальна пластина 
+									</label>
+								<label for="form__fibula">										
+										<input type="checkbox" id="form__fibula">
+										Реконструкція нижньої щелепи (фібула, аутотрансплантат)
+									</label>
+								<label for="form__orbit">										
+										<input type="checkbox" id="form__orbit">
+										Орбіта або виличний комплекс 
+									</label>
+								<label for="form__navigation">										
+										<input type="checkbox" id="form__navigation">
+										Навігаційний шаблон
+									</label>
+								<label for="form__3d">										
+										<input type="checkbox" id="form__3d">
+										Друк анатомічної 3д-моделі (лише)
+									</label>
+								<label for="form__orthognathic">										
+										<input type="checkbox" id="form__orthognathic">
+										Ортогнатичний кейс
+									</label>
+								<label for="form__contour">										
+										<input type="checkbox" id="form__contour">
+										Контурна пластика, підборіддя 
+									</label>
+								<label for="form__joint">										
+										<input type="checkbox" id="form__joint">
+										Суглоб
+									</label>
+								<label for="form__aligners">										
+										<input type="checkbox" id="form__aligners">
+										Елайнери 
+									</label>
+								<label for="form__other">										
+										<input type="checkbox" id="form__other">
+										Інше
+									</label>
+							</div>
+							<div class="form__group">
+									<span>Коментар</span>
+										<textarea name="form_comment" id="" placeholder="Залиште  ваш коментар"></textarea>	
+								</div>
 							</div>
 						</form>
 				</div>
