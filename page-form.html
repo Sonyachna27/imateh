@@ -139,265 +139,73 @@
 </div>
 </header>
 <main>
-<section class="hero">
+<section class="form">
 	<div class="container">
-		<div class="hero__container">
-				<h1>Інноваційні медичні рішення з&nbsp;3D-друком та моделюванням</h1>
-		
-				<div class="video-box">
-					<video class="video" poster="./assets/video/prevf.webp">
-						<source src="./assets/video/valhalla-calling.mp4" type="video/mp4">
-					</video>
-					<button class="video-play" aria-label="Play video">
-						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="27" viewBox="0 0 22 27" fill="none">
-						<path d="M0 3.00476C0 0.631266 2.62574 -0.80226 4.62227 0.481227L20.5745 10.7362C22.4115 11.9171 22.4115 14.6024 20.5745 15.7833L4.62227 26.0383C2.62574 27.3218 0 25.8883 0 23.5148V3.00476Z" fill="#9ADCFF"/>
-						</svg>
-					</button>
-				</div>
-				<p>Ми створюємо інноваційні рішення на перетині 3D-друку, цифрового моделювання та сучасних матеріалів, щоб допомогти лікарям відновлювати здоров’я та життя пацієнтів на новому рівні.</p>
+		<div class="form__container">
+			<div class="form__title">
+				<h2>Завантажити КТ</h2>
 			</div>
-	</div>
-</section>
-<section class="counter">
-	<div class="container">
-		<div class="counter__container">
-			<h2>Лічильник робіт</h2>
-			<div class="target__wrap counter__wrap">
-				<div class="counter__list target__list">
-					<div class="counter__list-item  target__list-item" data-name="target-1">Рендеры по пластике</div>
-					<div class="counter__list-item  target__list-item" data-name="target-2">Рендеры по травмам</div>
-
-				</div>
-				<div class="counter__content target__content" id="target-1">
-					<div class="counter__content__wrap">
+			<div class="form__block">
+			<div class="form__block__progress" data-total-steps="5"> 
+					<div class="simple">Крок <span id="current-step">1</span> з <span id="total-steps-display">5</span></div>
+					<div class="progress">
+						<div class="progress-track">
+							<div id="progress-fill" class="progress-fill">
+								<span class="value" id="progress-percent">0%</span>
+							</div>							
+						</div>
 						
-							<div class="counter__content__wrapper">				
-								<div class="counter__content__items">	
-									
-									<div class="counter__content__item first">								
-										
-										<div class="count"><span class="stat-value" data-target="150">150</span> +</div>
-										<p>Лоб</p>
-										<span>Корекція форми чола</span>
-									</div>
-									<div class="counter__content__item second">
-										
-										<div class="count"><span class="stat-value" data-target="210">210</span> +</div>
-										<p>Щелепа</p>
-										<span>Кути нижньої щелепи</span>
-									</div>
-								</div>
-								<div class="counter__content__images">
-									<svg class="item item-first" xmlns="http://www.w3.org/2000/svg" width="372" height="62" viewBox="0 0 372 62" fill="none" class="animated-svg step-line">
-											<path d="M372 0.75H312L282 60.75H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>
-											<path class="drawing-path" d="M372 0.75H312L282 60.75H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-										</svg>
-										<div class="knob knob-first"></div>
-										<div class="knob knob-second"></div>
-										<div class="knob knob-third"></div>
-										<div class="knob knob-forth"></div>
-										<svg class="item item-second" xmlns="http://www.w3.org/2000/svg" width="292" height="2" viewBox="0 0 292 2" fill="none" class="animated-svg straight-line">
-											<path d="M292 0.75H232H202H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>								
-											<path class="drawing-path" d="M292 0.75H232H202H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-										</svg>
-										<svg class="item item-third" xmlns="http://www.w3.org/2000/svg" width="295" height="122" viewBox="0 0 295 122" fill="none" class="animated-svg step-high">
-											<path d="M0 120.75H60L85 0.75H295" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>									
-											<path class="drawing-path" d="M0 120.75H60L85 0.75H295" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-										</svg>
-										<svg class="item item-forth" xmlns="http://www.w3.org/2000/svg" width="354" height="92" viewBox="0 0 354 92" fill="none">
-											<path d="M0 90.75H55.8947L83.8421 0.75H354" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>
-											<path class="drawing-path" d="M0 90.75H55.8947L83.8421 0.75H354" stroke="#9ADCFF" stroke-opacity="0.4" stroke-opacity="1" stroke-width="2" stroke-linecap="round"/>
-											</svg>
-										<img class="counter-img content-img-first" src="./assets/images/plastic3.webp" alt="Рендеры по пластике">
-										<img class="counter-img content-img-second" src="./assets/images/plastic2.webp" alt="Рендеры по пластике">
-										<img class="counter-img content-img-third" src="./assets/images/plastic4.webp" alt="Рендеры по пластике">
-										<img class="counter-img content-img-forth" src="./assets/images/plastic1.webp" alt="Рендеры по пластике">
-										
-									</div>	
-								<div class="counter__content__items">	
-									<div class="counter__content__item third">
-										<div class="count"><span class="stat-value" data-target="320">320</span> +</div>
-										<p>Вилиці</p>
-										<span>Збільшення об’єму вилиць</span>
-									</div>
-									<div class="counter__content__item forth">								
-										<div class="count"><span class="stat-value" data-target="180">180</span> +</div>
-										<p>підборіддя</p>
-										<span>Пластика підборіддя</span>
-									</div>
-								</div>
-							</div>
 					</div>
-				</div>				
-				<div class="counter__content target__content" id="target-2">
-					<div class="counter__content__wrap">						
-							<div class="counter__content__wrapper">				
-								<div class="counter__content__items">	
-									
-									<div class="counter__content__item first">								
-										
-										<div class="count"><span class="stat-value" data-target="150">150</span> +</div>
-										<p>Лоб</p>
-										<span>Корекція форми чола</span>
-									</div>
-									<div class="counter__content__item second">
-										
-										<div class="count"><span class="stat-value" data-target="210">210</span> +</div>
-										<p>Щелепа</p>
-										<span>Кути нижньої щелепи</span>
-									</div>
-								</div>
-								<div class="counter__content__images">
-									<svg class="item item-first" xmlns="http://www.w3.org/2000/svg" width="372" height="62" viewBox="0 0 372 62" fill="none" class="animated-svg step-line">
-											<path d="M372 0.75H312L282 60.75H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>
-											<path class="drawing-path" d="M372 0.75H312L282 60.75H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-										</svg>
-										<div class="knob knob-first"></div>
-										<div class="knob knob-second"></div>
-										<div class="knob knob-third"></div>
-										<div class="knob knob-forth"></div>
-										<svg class="item item-second" xmlns="http://www.w3.org/2000/svg" width="292" height="2" viewBox="0 0 292 2" fill="none" class="animated-svg straight-line">
-											<path d="M292 0.75H232H202H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>								
-											<path class="drawing-path" d="M292 0.75H232H202H0" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-										</svg>
-										<svg class="item item-third" xmlns="http://www.w3.org/2000/svg" width="295" height="122" viewBox="0 0 295 122" fill="none" class="animated-svg step-high">
-											<path d="M0 120.75H60L85 0.75H295" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>									
-											<path class="drawing-path" d="M0 120.75H60L85 0.75H295" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
-										</svg>
-										<svg class="item item-forth" xmlns="http://www.w3.org/2000/svg" width="354" height="92" viewBox="0 0 354 92" fill="none">
-											<path d="M0 90.75H55.8947L83.8421 0.75H354" stroke="#9ADCFF" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="1 1"/>
-											<path class="drawing-path" d="M0 90.75H55.8947L83.8421 0.75H354" stroke="#9ADCFF" stroke-opacity="0.4" stroke-opacity="1" stroke-width="2" stroke-linecap="round"/>
-											</svg>
-										<img class="counter-img content-img-first" src="./assets/images/trauma1.webp" alt="Рендеры по пластике">
-										<img class="counter-img content-img-second" src="./assets/images/trauma2.webp" alt="Рендеры по пластике">
-										<img class="counter-img content-img-third" src="./assets/images/traume5.png" alt="Рендеры по пластике">
-										<img class="counter-img content-img-forth" src="./assets/images/trauma3.webp" alt="Рендеры по пластике">
-								
-									</div>	
-								<div class="counter__content__items">	
-									<div class="counter__content__item third">
-										<div class="count"><span class="stat-value" data-target="320">320</span> +</div>
-										<p>Вилиці</p>
-										<span>Збільшення об’єму вилиць</span>
-									</div>
-									<div class="counter__content__item forth">								
-										<div class="count"><span class="stat-value" data-target="180">180</span> +</div>
-										<p>підборіддя</p>
-										<span>Пластика підборіддя</span>
-									</div>
-								</div>
-							</div>
+				</div>
+				<div class="form__block__info">
+					<div>Для того, щоб розпочати моделювання кейсу, завантажте дані КТ та заповніть подальшу інформацію щодо постановки задачі.</div>
+					<p>Важливі примітки:</p>
+					<ul>
+						<li><a href="#">Протокол КТ</a> для щелепно-лицевого кейсу надається</li>
+					</ul>
+					<a href="./index.html">IMATEHmedical</a>
+				</div>
+				<div class="form__btns">
+				<a href="#" class="btn btn-primary">Далі</a>
+				</div>
+			</div>
+		</div>
+		<div class="form__container">
+			<div class="form__title">
+				<h2>Заповнити деталі кейсу</h2>
+			</div>
+			<div class="form__block">
+			<div class="form__block__progress" data-total-steps="5"> 
+					<div class="simple">Крок <span id="current-step">2</span> з <span id="total-steps-display">5</span></div>
+					<div class="progress">
+						<div class="progress-track">
+							<div id="progress-fill" class="progress-fill">
+								<span class="value" id="progress-percent">0%</span>
+							</div>							
+						</div>
+						
 					</div>
-				</div>				
+				</div>
+				<div class="form__block__info">
+					<div>Інформація про кейс</div>
+						<form action="#">
+							<div class="form__row">
+								<label>
+									<span>Компанія/Клініка<span>*</span></span>
+									<input type="text" name="form__clinic" placeholder="Введіть назву компанії/клініки">
+								</label>
+							</div>
+						</form>
+				</div>
+				<div class="form__btns">
+				<a href="#" class="btn btn-primary btn-back">Назад</a>
+				<a href="#" class="btn btn-primary">Далі</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<section class="decision container-l">
-	<div class="decision__container">
-		<h2>Imateh medical — Ваш надійний партнер у щелепно-ліцевій хірургії</h2>
-		<div class="decision__items">
-			<div class="decision__item">
-				<div class="decision__item-bg"></div>
-				<div class="decision__item__title">
-					<span>01.</span>
-					<h3>Індивідуальні  пацієнтспецифічні  рішення</h3>
-					<div class="decision__item__img">
-					<img src="./assets/images/decision__img.webp" alt="Індивідуальні  пацієнтспецифічні  рішення">
-				</div>
-				</div>
-				<ul class="decision__item__list">
-					<li><a href="#">Субперіостальний імплант</a></li>
-					<li><a href="#">Реконструктивна хірургія</a></li>
-					<li><a href="#">Орбітальна хірургія</a></li>
-					<li><a href="#">Краніопластика</a></li>
-					<li><a href="#">Скулоорбітальний комплекс</a></li>
-					<li><a href="#">Ортогнатична хірургія</a></li>
-				</ul>
-			</div>
-			<div class="decision__item">
-				<div class="decision__item-bg"></div>
-				<div class="decision__item__title">
-					<span>02.</span>
-					<h3>Імпланти Avinent</h3>
-					<div class="decision__item__img">
-					<img src="./assets/images/decision__img5.webp" alt="Імпланти Avinent">
-				</div>
-				</div>
-				<ul class="decision__item__list">
-					<li><a href="#">OCEAN BIOMIMETIC IMPLANT</a></li>
-				</ul>
-			</div>
-			<div class="decision__item">
-				<div class="decision__item-bg"></div>
-				<div class="decision__item__title">
-					<span>03.</span>
-					<h3>Пластини та гвинти Titamed</h3>
-					<div class="decision__item__img">
-					<img src="./assets/images/decision__img2.webp" alt="Пластини та гвинти Titamed">
-				</div>
-				</div>
-				<ul class="decision__item__list">
-					<li><a href="#">ALFA</a></li>
-					<li><a href="#">BETA</a></li>
-					<li><a href="#">GAMMA</a></li>
-					<li><a href="#">SMILE DISTRACTION</a></li>
-				</ul>
-			</div>
-			<div class="decision__item">
-				<div class="decision__item-bg"></div>
-				<div class="decision__item__title">
-					<span>04.</span>
-					<h3>Пластична хірургія</h3>
-					<div class="decision__item__img">
-					<img src="./assets/images/decision__img3.webp" alt="Пластична хірургія">
-				</div>
-				</div>
-				<ul class="decision__item__list">
-					<li><a href="#">Об’єми PEEK</a></li>
-					<li><a href="#">Контурний імплант зони вилиць</a></li>
-					<li><a href="#">Контурний імплант зони кутів нижньої щелепи</a></li>
-					<li><a href="#">Контурний імплант зони підборіддя</a></li>
-					<li><a href="#">Контурний імплант зони чола</a></li>
-					<li><a href="#">Екзопротезування частин обличчя</a></li>
-					<li><a href="#">Індивідуальний очний протез</a></li>
-				</ul>
-			</div>
-			<div class="decision__item">
-				<div class="decision__item-bg"></div>
-				<div class="decision__item__title">
-					<span>05.</span>
-					<h3>Стоматологія</h3>
-					<div class="decision__item__img">
-					<img src="./assets/images/decision__img4.webp" alt="Стоматологія">
-				</div>
-				</div>
-				<ul class="decision__item__list">
-					<li><a href="#">Безметалева кераміка</a></li>
-					<li><a href="#">Ортопедичні конструкції на імплантах</a></li>
-					<li><a href="#">Ортопедичні конструкції на імплантах</a></li>
-					<li><a href="#">Навігаційні шаблони</a></li>
-					<li><a href="#">Елайнери</a></li>
-					<li><a href="#">Титанові сітки</a></li>
-					<li><a href="#">Кістковий матеріал</a></li>
-				</ul>
-			</div>
-			<div class="decision__item">
-				<div class="decision__item-bg"></div>
-				<div class="decision__item__title">
-					<span>06.</span>
-					<h3>Обладнання</h3>
-					<div class="decision__item__img">
-					<!-- <img src="./assets/images/decision__img4.webp" alt="Стоматологія"> -->
-				</div>
-				</div>
-				<ul class="decision__item__list">
-					<li><a href="#">?</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</section>
+	
 <section class="connection" >
 	<div class="container">
 		<div class="connection__container">

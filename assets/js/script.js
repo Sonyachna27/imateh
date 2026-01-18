@@ -13,54 +13,150 @@ document.addEventListener("DOMContentLoaded", function () {
     initMobileAccordion();
 		openImageTabs();
 		initCounterHover();
+		updateFormProgress(1); //функция для прогресс бара
 });
 const initCounterHover = () => {
-    const textItems = document.querySelectorAll('.counter__content__item');
-    const knobs = document.querySelectorAll('.knob');
-    const svgItems = document.querySelectorAll('.item'); // наші SVG
-    const images = document.querySelectorAll('.counter-img');
-    const allGroups = [textItems, knobs, svgItems, images];
+    const allCounterBlocks = document.querySelectorAll('.counter__content');
 
-    const activate = (index) => {
-        allGroups.forEach(group => {
-            group.forEach((el, i) => {
-                if (i === index) {
-                    el.classList.add('active');
-                    el.classList.remove('unactive');
-                } else {
-                    el.classList.add('unactive');
+    allCounterBlocks.forEach(block => {
+        const textItems = block.querySelectorAll('.counter__content__item');
+        const knobs = block.querySelectorAll('.knob');
+        const svgItems = block.querySelectorAll('.item');
+        const images = block.querySelectorAll('.counter-img');
+        
+        const allGroups = [textItems, knobs, svgItems, images];
+
+        const activate = (index) => {
+            allGroups.forEach(group => {
+                group.forEach((el, i) => {
+                    if (i === index) {
+                        el.classList.add('active');
+                        el.classList.remove('unactive');
+                    } else {
+                        el.classList.add('unactive');
+                        el.classList.remove('active');
+                    }
+                });
+            });
+        };
+
+        const reset = () => {
+            allGroups.forEach(group => {
+                group.forEach(el => {
                     el.classList.remove('active');
-                }
+                    el.classList.remove('unactive');
+                });
             });
+        };
+
+        textItems.forEach((item, index) => {
+            item.addEventListener('mouseenter', () => activate(index));
+            item.addEventListener('click', () => activate(index));
         });
-    };
 
-    // Функція для скидання (якщо треба повернути початковий стан без unactive)
-    const reset = () => {
-        allGroups.forEach(group => {
-            group.forEach(el => {
-                el.classList.remove('active');
-                el.classList.remove('unactive');
-            });
+        knobs.forEach((knob, index) => {
+            knob.addEventListener('mouseenter', () => activate(index));
+            knob.addEventListener('click', () => activate(index));
         });
-    };
 
-    textItems.forEach((item, index) => {
-        item.addEventListener('mouseenter', () => activate(index));
-        item.addEventListener('click', () => activate(index));
+        block.addEventListener('mouseleave', reset);
     });
-
-    knobs.forEach((knob, index) => {
-        knob.addEventListener('mouseenter', () => activate(index));
-        knob.addEventListener('click', () => activate(index));
-    });
-
-    // Якщо хочеш, щоб при виході мишки з усього блоку стилі скидалися:
-    const container = document.querySelector('.counter__content');
-    container.addEventListener('mouseleave', reset);
 };
 
+const windowLoad = () =>{
+  const animationDuration = 3000;
+  const frameDuration = 1000 / 60;
+  const totalFrames = Math.round(animationDuration / frameDuration);
+  const easeOutQuad = t => t * (2 - t);
 
+  const numScroll = (statValue) => {
+    if (statValue.classList.contains('animated')) return;
+    statValue.classList.add('animated');
+
+    const targetAttr = statValue.dataset.target || statValue.innerText;
+    const countTo = parseInt(targetAttr.replace(/,/g, ''), 10);
+    
+    const tempText = statValue.innerHTML;
+    statValue.innerHTML = countTo;
+    const maxWidth = statValue.offsetWidth;
+    statValue.innerHTML = tempText;
+    statValue.style.width = maxWidth + 'px';
+    statValue.style.display = 'inline-block';
+
+    let frame = 0;
+    const counter = setInterval(() => {
+      frame++;
+      const progress = easeOutQuad(frame / totalFrames);
+      const currentCount = Math.round(countTo * progress);
+
+      statValue.innerHTML = currentCount;
+
+      if (frame === totalFrames) {
+        clearInterval(counter);
+        statValue.innerHTML = countTo;
+      }
+    }, frameDuration);
+  };
+
+  const observerOptions = {
+    threshold: 0.5, // Спрацює, коли 50% елемента видно
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Якщо це контейнер (таб або секція), шукаємо числа всередині
+        const statValues = entry.target.querySelectorAll('.stat-value');
+        if (statValues.length) {
+          statValues.forEach(numScroll);
+        } 
+        // Якщо ми повісили observer прямо на .stat-value
+        else if (entry.target.classList.contains('stat-value')) {
+          numScroll(entry.target);
+        }
+        
+        // Можна відписатися від спостереження, якщо анімація одноразова
+        // observer.unobserve(entry.target); 
+      }
+    });
+  }, observerOptions);
+
+
+  document.querySelectorAll('.counter__content, .counter__content__item').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+
+window.addEventListener('load', windowLoad);
+
+
+const updateFormProgress = (step) => {
+    const progressContainer = document.querySelector('.form__block__progress');
+    if (!progressContainer) return;
+
+    // Отримуємо загальну кількість кроків
+    const totalSteps = parseInt(progressContainer.dataset.totalSteps) || 5;
+    
+    // Розрахунок відсотка
+    const percent = Math.round((step / totalSteps) * 100);
+
+    // Знаходимо елементи
+    const stepText = document.getElementById('current-step');
+    const totalText = document.getElementById('total-steps-display');
+    const percentText = document.getElementById('progress-percent');
+    const fill = document.getElementById('progress-fill');
+
+    // Оновлюємо дані
+    if (stepText) stepText.innerText = step;
+    if (totalText) totalText.innerText = totalSteps;
+    if (percentText) percentText.innerText = percent + '%';
+
+    if (fill) {
+        // Змінюємо ширину fill
+        fill.style.width = `${percent}%`;
+    }
+};
 
 
 const updateHeight = () =>{

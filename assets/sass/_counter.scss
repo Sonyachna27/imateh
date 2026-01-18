@@ -16,6 +16,16 @@
 			margin-bottom: 60px;
 		}
 	}
+	.target__content{
+		opacity: 0;
+		display: none;
+		visibility: hidden;
+		&.active{
+			opacity: 1;
+			display: block;
+			visibility: visible;
+		}
+	}
 	&__list{
 		display: flex;
 		align-items: center;
@@ -92,6 +102,7 @@
 			position: relative;
 			width: 272px;
 			height: 341px;
+			// box-shadow: 0 0 152.402px 0 rgba(154, 220, 255, 0.15);
 			@media screen and (max-width:991.9px) {
 				order: 1;
 			}
