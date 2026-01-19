@@ -110,17 +110,39 @@
 				width: 508px;
 				height: 635px;
 				min-width: 508px;
+				padding: 68px 0;
 			}
 			img{
 			width: 100%;
-			height: 100%;
 			position: absolute;
-			top: 0;
+			top: 50%;
 			left: 50%;			
-			transform: translateX(-50%);
+			transform: translate(-50%, -50%);
+
 			&.unactive{
 				opacity: 0;
 			}
+		}
+		.content-img{
+			&-first,
+			&-second,
+			&-third,
+			&-forth{
+				opacity: 0;
+				&.active{
+					opacity: 1;
+				}
+			}
+		}
+		.counter-img-main {
+    opacity: 1; // Вона видима спочатку
+    visibility: visible;
+    z-index: 2; // Трохи вище за інші в спокої
+
+    &.unactive {
+        opacity: 0;
+        visibility: hidden;
+    	}
 		}
 			.item{
 				&.unactive{
@@ -181,7 +203,7 @@
 					left: 45%;
     			top: 148px;
 					@media screen and (max-width:991.9px) {
-						top: 25px;
+						top: 93px;
 						left: 48%;
 					}
 				}
@@ -189,7 +211,8 @@
 					bottom: 210px;
     			left: 30%;
 					@media screen and (max-width:991.9px) {
-						bottom: 100px;
+						bottom: 105px;
+						left: 32%;
 					}
 				}
 				&-third{
@@ -201,10 +224,10 @@
 					}
 				}
 				&-forth{
-					bottom: 118px;
-    			right: 49%;
+					bottom: 120px;
+    			right: 45%;
 					@media screen and (max-width:991.9px) {
-						bottom: 31px;
+						bottom: 60px;
     				right: 47%;
 					}
 				}

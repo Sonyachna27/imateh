@@ -22,11 +22,18 @@ const initCounterHover = () => {
         const textItems = block.querySelectorAll('.counter__content__item');
         const knobs = block.querySelectorAll('.knob');
         const svgItems = block.querySelectorAll('.item');
-        const images = block.querySelectorAll('.counter-img');
+        const images = block.querySelectorAll('.counter-img:not(.counter-img-main)'); // Детальні картинки
+        const mainImage = block.querySelector('.counter-img-main'); // Наша 5-та картинка
         
         const allGroups = [textItems, knobs, svgItems, images];
 
         const activate = (index) => {
+            // Приховуємо головну картинку
+            if (mainImage) {
+                mainImage.classList.add('unactive');
+                mainImage.classList.remove('active');
+            }
+
             allGroups.forEach(group => {
                 group.forEach((el, i) => {
                     if (i === index) {
@@ -41,6 +48,12 @@ const initCounterHover = () => {
         };
 
         const reset = () => {
+            // Повертаємо головну картинку до початкового стану
+            if (mainImage) {
+                mainImage.classList.remove('unactive');
+                mainImage.classList.add('active'); // Або просто прибрати unactive залежно від CSS
+            }
+
             allGroups.forEach(group => {
                 group.forEach(el => {
                     el.classList.remove('active');
@@ -49,17 +62,18 @@ const initCounterHover = () => {
             });
         };
 
-        textItems.forEach((item, index) => {
-            item.addEventListener('mouseenter', () => activate(index));
-            item.addEventListener('click', () => activate(index));
-        });
-
-        knobs.forEach((knob, index) => {
-            knob.addEventListener('mouseenter', () => activate(index));
-            knob.addEventListener('click', () => activate(index));
+        // Навішуємо події
+        [textItems, knobs].forEach(group => {
+            group.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => activate(index));
+                item.addEventListener('click', () => activate(index));
+            });
         });
 
         block.addEventListener('mouseleave', reset);
+        
+        // Початковий стан: викликаємо reset, щоб головна картинка була активною
+        reset();
     });
 };
 
