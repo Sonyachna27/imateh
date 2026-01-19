@@ -19,9 +19,9 @@
 			</a>
 			<nav>
 				<ul>
-					<li><a href="#">Головна</a></li>
-					<li><a href="#">Про нас</a></li>
-					<li><a href="#">Контакти</a></li>
+					<li><a href="./index.html">Головна</a></li>
+					<li><a href="./page-about.html">Про нас</a></li>
+					<li><a href="./page-contact.html">Контакти</a></li>
 				</ul>
 			</nav>
 			<div class="header__btns">
@@ -35,23 +35,106 @@
 				</a>				
 			</div>
 			<button class="burger">
-					<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="2" cy="2" r="2" fill="black"/>
-					<circle cx="9" cy="2" r="2" fill="#171517"/>
-					<circle cx="16" cy="2" r="2" fill="black"/>
-					<circle cx="2" cy="9" r="2" fill="black"/>
-					<circle cx="9" cy="9" r="2" fill="#171517"/>
-					<circle cx="16" cy="9" r="2" fill="black"/>
-					<circle cx="2" cy="16" r="2" fill="black"/>
-					<circle cx="9" cy="16" r="2" fill="#171517"/>
-					<circle cx="16" cy="16" r="2" fill="black"/>
-					</svg>
+		<svg class="menu-toggle-icon" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <g class="dots-grid">
+    <circle cx="2" cy="2" r="2" fill="black"/>
+    <circle cx="9" cy="2" r="2" fill="black"/>
+    <circle cx="16" cy="2" r="2" fill="black"/>
+    <circle cx="2" cy="9" r="2" fill="black"/>
+    <circle cx="9" cy="9" r="2" fill="black"/>
+    <circle cx="16" cy="9" r="2" fill="black"/>
+    <circle cx="2" cy="16" r="2" fill="black"/>
+    <circle cx="9" cy="16" r="2" fill="black"/>
+    <circle cx="16" cy="16" r="2" fill="black"/>
+  </g>
+  
+  <line class="line l1" x1="2" y1="2" x2="16" y2="16" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+  <line class="line l2" x1="16" y1="2" x2="2" y2="16" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+</svg>
 
 					Меню</button>
 		</div>
-		<div class="header__menu">
-
-		</div>
+		
+		<div class="menu__wrap ">
+					<nav class="menu-top">
+						<ul>
+							<li><a href="./index.html">Головна</a></li>
+							<li><a href="./page-about.html">Про нас</a></li>
+							<li><a href="./page-contact.html">Контакти</a></li>
+						</ul>
+					</nav>
+					<div class="menu__left">
+						<span>Рішення та Продукція</span>					
+							<nav>
+								<ul>								
+									<li class="menu-item menu-item-has-children">
+										<a href="./single-category.html">Пластична хірургія</a>
+										<div class="sub-menu-wrapper">
+											<div class="sub-menu-header">Пластична хірургія</div>
+											<ul class="sub-menu">
+												<li class="menu-item"><a href="./single-category.html#sub-1">Об’єми PEEK</a></li>
+												<li class="menu-item"><a href="./single-category.html#sub-2">Контурний імплант зони вилиць</a></li>
+												<li class="menu-item"><a href="./single-category.html#sub-3">Контурний імплант зони кутів нижньої щелепи</a></li>
+												<li class="menu-item"><a href="./single-category.html#sub-4">Контурний імплант зони підборіддя</a></li>
+												<li class="menu-item"><a href="./single-category.html#sub-5">Контурний імплант зони чола</a></li>
+												<li class="menu-item"><a href="./single-category.html#sub-6">Екзопротезування частин обличчя</a></li>
+												<li class="menu-item"><a href="./single-category.html#sub-7">Індивідуальний очний протез</a></li>
+											</ul>
+										</div>
+									</li>
+									<li class="menu-item menu-item-has-children">
+										<a href="./single-category-ind.html">Індивідуальні рішення</a>
+										<div class="sub-menu-wrapper">
+											<div class="sub-menu-header">Індивідуальні рішення</div>
+											<ul class="sub-menu">
+												<li class="menu-item"><a href="./single-category-ind.html#ind-1">Субперіостальний імплант</a></li>
+												<li class="menu-item"><a href="./single-category-ind.html#ind-2">Реконструктивна хірургія</a></li>
+												<li class="menu-item"><a href="./single-category-ind.html#ind-3">Орбітальна хірургія</a></li>
+												<li class="menu-item"><a href="./single-category-ind.html#ind-4">Краніопластика</a></li>
+												<li class="menu-item"><a href="./single-category-ind.html#ind-5">Скулоорбітальний комплекс</a></li>
+												<li class="menu-item"><a href="./single-category-ind.html#ind-6">Ортогнатична хірургія</a></li>
+											</ul>
+										</div>
+									</li>
+									<li class="menu-item menu-item-has-children">
+										<a href="./single-category-titamed.html">Titamed</a>
+										<div class="sub-menu-wrapper">
+											<div class="sub-menu-header">Titamed</div>
+											<ul class="sub-menu">
+												<li class="menu-item"><a href="./single-category-titamed.html#alfa">ALFA</a></li>
+												<li class="menu-item"><a href="./single-category-titamed.html#beta">BETA</a></li>
+												<li class="menu-item"><a href="./single-category-titamed.html#gamma">GAMMA</a></li>
+											</ul>
+										</div>
+									</li>
+									<li class="menu-item menu-item-has-children">
+										<a href="single-category-dentist.html">Стоматологія</a>
+										<div class="sub-menu-wrapper">
+											<div class="sub-menu-header">Стоматологія</div>
+											<ul class="sub-menu">
+												<li class="menu-item"><a href="./single-service.html">Безметалева кераміка</a></li>
+												<li class="menu-item"><a href="./single-service-construction.html">Ортопедичні конструкції на імплантах</a></li>
+												<li class="menu-item"><a href="./single-service-template.html">Навігаційні шаблони</a></li>
+												<li class="menu-item"><a href="single-service-aligners.html">Елайнери</a></li>
+												<li class="menu-item"><a href="./single-service-net.html">Титанові сітки</a></li>
+												<li class="menu-item"><a href="./single-category-dentegris.html">Кістковий матеріал</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</nav>
+					</div>
+					<nav  class="menu-bottom">
+						<span>Розділи</span>
+						<ul>
+							<li><a href="./single-category-doctors.html">Лікарі для героїв</a></li>
+							<li><a href="./single-category-avinent.html">Avivent</a></li>
+							<li><a href="./page-equipment.html">Обладнання</a></li>
+							<li><a href="./page-help.html">Військовим</a></li>
+							<li><a href="page-fond.html">Фондам</a></li>
+						</ul>
+					</nav>
+				</div>
 	</div>
 </div>
 </header>
@@ -171,7 +254,7 @@
 					<img src="./assets/images/partners-img2.svg" alt="Avinent(Іспанія)">
 				</div>
 				<div class="partners__item__name">
-					<a href="#">Avinent <span>(Іспанія)</span></span>
+					<a href="#">Avinent <span>(Іспанія)</span></span></a>
 				</div>
 				<div class="partners__item__description">
 					дентальні імплантати;
@@ -182,7 +265,7 @@
 					<img src="./assets/images/partners-img3.svg" alt="Dentegris(Німеччина)">
 				</div>
 				<div class="partners__item__name">
-					<a href="#">Dentegris <span>(Німеччина)</span></span>
+					<a href="#">Dentegris <span>(Німеччина)</span></span></a>
 				</div>
 				<div class="partners__item__description">
 					кістковий матеріал;
@@ -193,7 +276,7 @@
 					<img src="./assets/images/partners-img4.svg" alt="Technovent(Великобританія)">
 				</div>
 				<div class="partners__item__name">
-					<a href="#">Technovent <span>(Великобританія)</span></span>
+					<a href="#">Technovent <span>(Великобританія)</span></span></a>
 				</div>
 				<div class="partners__item__description">
 					кістковий товари для ектопротезів;
@@ -204,7 +287,7 @@
 					<img src="./assets/images/partners-img5.svg" alt="Ahead Implants(Нідерланди)">
 				</div>
 				<div class="partners__item__name">
-					<a href="#">Ahead Implants <span>(Нідерланди)</span></span>
+					<a href="#">Ahead Implants <span>(Нідерланди)</span></span></a>
 				</div>
 				<div class="partners__item__description">
 					імплантаційні системи

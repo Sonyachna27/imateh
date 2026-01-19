@@ -1,6 +1,13 @@
 @use './roots/' as *;
 .about{
 	margin-bottom: 240px;
+	margin-top: 50px;
+	@media screen and (min-width:1024px) and (max-width:1239.9px) {
+		margin-top: 58px;
+	}
+	@media screen and (min-width:1240px) {
+		margin-top: 32px;
+	}
 	&__img{
 		border-radius: 20px;
 		max-height: 528px;
@@ -19,9 +26,16 @@
 
 		}
 	}
+	&__row{
+		@media screen and (min-width:1240px) {
+			justify-content: flex-end;
+			gap: 40px;
+		}
+	}
 	& .about__left {
 		img{
 			object-position: 75% 24%;
+			max-height: 360px;
 		}
 	}
 	&__right img{

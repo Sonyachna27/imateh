@@ -37,7 +37,7 @@
 		span{
 			color: $accent-100;
 		}
-		@media screen and (min-width:10244px) {
+		@media screen and (min-width:1024px) {
 			font-size: 54px;
 			font-style: normal;
 			font-weight: 600;
@@ -80,6 +80,8 @@
 		flex-wrap: wrap;
 		gap: 14px 60px ;
 		margin-top: auto;
+		margin-bottom: 40px;
+
 		span{
 			width: 100%;
 		}

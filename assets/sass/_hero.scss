@@ -1,11 +1,14 @@
 @use './roots/' as *;
 .hero{
-	margin-bottom: 240px;
+	margin-bottom: 165px;
+	margin-top:62px;
 	@media screen and (min-width:1024px) and (max-width:1239.9px) {
-		margin-bottom: 268px;
+		
+		margin-top: 73px;
 	}
 	@media screen  and (min-width:1240px) {
-		margin-bottom: 300px;
+		
+		margin-top:34px;
 	}
 	&__container{
 		display: flex;

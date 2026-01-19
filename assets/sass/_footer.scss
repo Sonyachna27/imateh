@@ -19,11 +19,12 @@
 	}
 	@media screen and (min-width:1240px) {
 		flex-direction: row;
+		justify-content: space-between;
 	}
 }
 &__nav{
 	@media screen and (min-width:1240px) {
-		width:64.5%;
+		width:58.5%;
 	}
 	ul:not(.sub-menu){
 		display: flex;
@@ -62,6 +63,10 @@
 				font-weight: 400;
 				line-height: 170%; 
 				color: $gray-300;
+				transition: 600ms ease-out;
+				&:hover{
+					color: $accent;
+				}
 			}
 	}
 }
@@ -71,7 +76,7 @@
 		gap: 40px;
 		
 	@media screen and (min-width:1240px) {
-		width:30%;
+		width:31%;
 	}
 	&__form{
 		display: flex;
@@ -108,7 +113,8 @@
 				background-color: transparent;	
 				padding: 0;
 				width: 20px;
-				height: 20px;			
+				height: 20px;		
+					
 				&:active,
 				&:focus{
 					border-color: transparent;
@@ -143,7 +149,11 @@
 				width: 100%;
 				max-width: 100%;
 				padding-right: 52px;
-				
+				border-color: $gray-300;
+					&:active,
+				&:focus{
+					border-color: $accent;
+				}
 			}
 			input[type="submit"]:hover + .form__wrap:after{				
 					transform: rotate(45deg);

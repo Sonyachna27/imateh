@@ -190,6 +190,7 @@ $transition-linear: .3s linear;
 							display: flex;
 							flex-direction: column;
 							gap: 32px;
+							z-index: -2;
 							@media screen and (min-width:1024px) {
 								display: grid;
 								top: 106px;
@@ -208,6 +209,7 @@ $transition-linear: .3s linear;
 							.open & {
 								opacity: 1;
 								visibility: visible;
+								z-index: 50;
 							}
 						
 							scrollbar-width: thin;        
@@ -251,10 +253,7 @@ $transition-linear: .3s linear;
 								font-weight: 500;
 								line-height: 28px;
 								gap: 24px;
-								transition: 600ms ease-out;
-								&:hover{
-									color: $accent;
-								}
+							
 								@media screen and (min-width:1024px) and (max-width:1239.9px) {
 									font-size: 18px;
 									font-weight: 700;
@@ -266,6 +265,12 @@ $transition-linear: .3s linear;
 									font-weight: 700;
 									line-height: 30px; 
 									gap: 16px;
+								}
+								li{
+										transition: 600ms ease-out;
+								&:hover{
+									color: $accent;
+								}
 								}
             }
         }
