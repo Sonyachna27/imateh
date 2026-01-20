@@ -45,6 +45,7 @@
 				font-weight: 700;
 				line-height: normal;
 				transition: 600ms ease-out;
+				z-index: 2;
 				@media screen and (min-width:1240px) {
 					padding: 21px 29px;
 					font-size: 18px;
@@ -412,7 +413,8 @@ $transition-linear: .3s linear;
 										right: 24px;
 										opacity: 0;
 										transition: 600ms ease-out;
-										background: url('../images/header-Icon.svg') center center / 24px no-repeat;
+										z-index: 2;
+										background: url('/assets/images/header-icon.svg') center center / 24px no-repeat;
 									}
 								}
 									&:hover{										

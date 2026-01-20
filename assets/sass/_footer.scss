@@ -174,7 +174,7 @@
 	&__sing{
 		font-family: 'InterTight-SemiBold', sans-serif;
 		font-weight: 600;
-		color: $gray;
+		color: $gray-300;
 			font-size: 14px;
 		@media screen and (max-width:1023.9px){
 			margin: 0 auto;
@@ -190,7 +190,7 @@
 		
 		a{
 			transition: 600ms ease-out;
-			color: $gray-300;
+			color: $gray;
 			&:hover{
 				color: $accent-100;
 			}

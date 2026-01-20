@@ -1,35 +1,38 @@
 @use './roots/' as *;
 .contact{
+	margin-top: 60px;
 	margin-bottom: 180px;
 	@media screen and (min-width:992px) {
 		margin-bottom: 80px;
+	}
+	@media screen and (min-width:992px) and (max-width:1240px) {
+		margin-top: 40px;
 	}
 	&__container{
 		display:flex;
 		flex-direction: column;
 		border-radius: 40px;
+		border:1px solid rgba(255, 255, 255, 0.10);
 		background-image: 
     linear-gradient(0deg, rgba(23, 21, 23, 0.4), rgba(23, 21, 23, 0.4)), 
+		
     url('../images/contact-img.webp');
 
-			background-position: center bottom; 
-			
-			background-size: cover; 
-			
+			background-position: center bottom; 			
+			background-size: cover; 			
 			background-repeat: no-repeat;
   		background-color: rgba(28, 26, 28, 0.90);
 		@media screen and (min-width:992px) {
 			flex-direction: row;		
 		}
-
 	}
 	&__info{
 		padding: 32px 18px;
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
-		background-color: rgba(28, 26, 28, 0.90);		
-			border:1px solid rgba(255, 255, 255, 0.10);
+		background-color: $black;		
+			border-right:1px solid rgba(255, 255, 255, 0.10);
 			border-radius: 40px 40px 0 0px;
 		@media screen and (min-width:992px) {
 			gap: 48px;
@@ -82,12 +85,13 @@
 		gap: 32px;
 		padding: 48px 21px 32px 21px;
 		position: relative;
-		background-color: rgba(28, 26, 28, 0.70);
+		background-color: #171517E6;
 		border-radius: 0 0 32px 32px;
 		@media screen and (min-width:992px) {
 			width: 60%;
 			justify-content: baseline;
 			padding: 95px 21px 32px 0px;
+			border-radius: 0 40px 40px 0;
 		}
 
 		&__title{

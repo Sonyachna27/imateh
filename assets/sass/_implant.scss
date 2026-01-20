@@ -11,11 +11,11 @@
 		top: 37%;
 		left: 50%;
 		transform: translateX(-50%);
-		background: url('../images/implant.webp') center center /450px no-repeat;
+		background: url('../images/implant1.png') center center /450px no-repeat;
 		z-index: -1;
 		@media screen and (min-width:992px) {
-					background: url('../images/implant.webp') center center / 950px no-repeat;
-top: 0%;
+			background: url('../images/implant1.png') center center / 950px no-repeat;
+			top: 0%;
 			width: 950px;
 		height:950px;
 		}
@@ -91,6 +91,7 @@ top: 0%;
 		@media screen and (min-width:992px) {
 			padding: 103px 0 88px 0;
 			order: 2;
+			margin-bottom: 0;
 		}
 	}
 	&__list{
@@ -118,6 +119,9 @@ top: 0%;
 				span{
 					background-color: $black;
 					border: transparent;
+					svg{
+						transform: rotate(0deg);
+					}
 				}
 				@media screen and (max-width:991.9px) {
 					margin-bottom: 211px;
@@ -135,15 +139,17 @@ top: 0%;
 				aspect-ratio: 1;
 				.active &{
 					background-color: $black;
+					
 				}
 				svg{
-					width: 13px;
-					height: 13px;
+					width: 17px;
+					// height: 13px;
 					transition: 600ms ease-out;
+					transform: rotate(-45deg);
 				}
-				.active &{
-					transform: rotate(45deg);
-				}
+				// .active &{
+				// 	transform: rotate(45deg);
+				// }
 			}
 		}
 	}
@@ -156,6 +162,8 @@ top: 0%;
     display: grid;   
 		justify-content: space-between;
 		width: 100%;
+		grid-auto-rows: min-content; 
+    align-items: start;
   }
 	@media screen and (min-width:992px) and (max-width:1239.9px) {
 		grid-template-columns: 343px 343px;
@@ -187,8 +195,8 @@ top: 0%;
 	}
 
 		@media screen and (min-width:992px) {
-			grid-column: 2; /* Всі блоки контенту стають у другу колонку */
-			grid-row: 1 / span 10; /* Всі вони займають те саме місце праворуч */
+			grid-column: 2; 
+			grid-row: 1 / span 4; 
 			padding-left: 50px;
 		}
 
