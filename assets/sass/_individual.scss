@@ -3,7 +3,7 @@
 	margin-bottom: 240px;
 	&Slider{
 @media screen and (min-width:1024px) {
-	height: 523px;
+	height: 534px;
 }
 	}
 	
@@ -103,7 +103,7 @@
   	bottom: 8px;
 		left: 50%;
 		transform: translateX(-50%);
-		height: 100%;
+		height: calc(100% - 8px);
 	}
 }
 

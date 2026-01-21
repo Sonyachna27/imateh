@@ -743,27 +743,20 @@ const initMobileAccordion = () => {
     
     menuItems.forEach(item => {
         item.addEventListener('click', (e) => {
-            // Працюємо тільки на мобільних пристроях
             if (window.innerWidth >= 1024) return; 
-
-            // Перевіряємо, чи клікнули саме по посиланню <a> всередині цього item
-            // Якщо клік був по тегу <a>, ми НІЧОГО не робимо (дозволяємо браузеру перейти за посиланням)
             if (e.target.tagName === 'A') {
                 return; 
             }
 
-            // Якщо клікнули по самому item (li) або будь-чому іншому всередині, крім посилання:
             e.preventDefault();
             e.stopPropagation();
 
             const isActive = item.classList.contains('active');
 
-            // Закриваємо інші відкриті пункти (ефект акордеона)
             document.querySelectorAll('.menu-item-has-children.active').forEach(activeItem => {
                 if (activeItem !== item) activeItem.classList.remove('active');
             });
 
-            // Перемикаємо стан поточного пункту
             if (isActive) {
                 item.classList.remove('active');
             } else {

@@ -114,17 +114,17 @@ html.open-filter{
 
 html {
     &::-webkit-scrollbar {
-        width: 10px !important; 
-        display: block !important;
+        width: 5px ; 
+        display: block ;
     }
 
     &::-webkit-scrollbar-track {
-        background: #171517 !important; 
+        background: #171517 ; 
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: #9ADCFF !important;
-        border-radius: 10px !important;
+        background-color: #9ADCFF ;
+        border-radius: 5px ;
     }
 }
 .container{
@@ -170,13 +170,16 @@ body{
 	}
 }
 
-
+p{
+	font-family: "Manrope", sans-serif;
+}
 
 .btn{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	max-width: fit-content;
+	font-family: "Manrope", sans-serif;
 	width: 100%;
 	padding: 14px;
 	font-size: 14px;
@@ -785,6 +788,7 @@ form{
 				font-weight: 400;
 				line-height: 140%; 
 				color: $gray;
+				font-family: "Manrope", sans-serif;
 				font-feature-settings: 'liga' off, 'clig' off;
 				@media screen and (min-width:1024px) {
 					font-size: 18px;
@@ -813,6 +817,7 @@ form{
 				line-height: 140%;
 				letter-spacing: -0.54px;
 				color: $white;
+				font-family: "Manrope", sans-serif;
 				@media screen and (min-width:1024px) and (max-width:1239.9px) {
 					font-size: 24px;
 					letter-spacing: -0.72px;

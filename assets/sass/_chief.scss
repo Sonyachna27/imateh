@@ -110,10 +110,7 @@
 				width: 100%;
 				background-position: center;
 				background-size: 100%;
-				
-					
 				}
-
 			}
 		}
 	}
@@ -161,6 +158,7 @@
 			line-height: 140%;
 			color: $gray;
 			margin-bottom: 24px;
+			font-family: "Manrope", sans-serif;
 			.chief-color &{
 					margin-bottom: 12px;
 					&:nth-last-of-type(1){
