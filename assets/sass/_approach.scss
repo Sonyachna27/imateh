@@ -17,13 +17,19 @@
 		}
 	}
 	p{
-		@media screen and (min-width:1024px) {
+		font-family: "Manrope", sans-serif;		
+			font-style: normal;
+			font-weight: 500;
+			font-size: 18px;
+		line-height: 140%;
+		@media screen and (min-width:1024px) {			
 			font-size: 22px;
 			letter-spacing: -0.66px;
 		}
 		span{
 			color: $accent-100;
 			text-transform: uppercase;
+			font: inherit;
 		}
 
 	}

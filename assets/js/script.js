@@ -22,13 +22,12 @@ const initCounterHover = () => {
         const textItems = block.querySelectorAll('.counter__content__item');
         const knobs = block.querySelectorAll('.knob');
         const svgItems = block.querySelectorAll('.item');
-        const images = block.querySelectorAll('.counter-img:not(.counter-img-main)'); // Детальні картинки
-        const mainImage = block.querySelector('.counter-img-main'); // Наша 5-та картинка
+        const images = block.querySelectorAll('.counter-img:not(.counter-img-main)'); 
+        const mainImage = block.querySelector('.counter-img-main'); 
         
         const allGroups = [textItems, knobs, svgItems, images];
 
         const activate = (index) => {
-            // Приховуємо головну картинку
             if (mainImage) {
                 mainImage.classList.add('unactive');
                 mainImage.classList.remove('active');
@@ -48,10 +47,9 @@ const initCounterHover = () => {
         };
 
         const reset = () => {
-            // Повертаємо головну картинку до початкового стану
             if (mainImage) {
                 mainImage.classList.remove('unactive');
-                mainImage.classList.add('active'); // Або просто прибрати unactive залежно від CSS
+                mainImage.classList.add('active'); 
             }
 
             allGroups.forEach(group => {
@@ -62,7 +60,6 @@ const initCounterHover = () => {
             });
         };
 
-        // Навішуємо події
         [textItems, knobs].forEach(group => {
             group.forEach((item, index) => {
                 item.addEventListener('mouseenter', () => activate(index));
@@ -72,7 +69,7 @@ const initCounterHover = () => {
 
         block.addEventListener('mouseleave', reset);
         
-        // Початковий стан: викликаємо reset, щоб головна картинка була активною
+        
         reset();
     });
 };
@@ -191,8 +188,6 @@ window.addEventListener('load', updateHeight);
 }
 
 
-
-
 const hideSubcategoryItem = () => {
   const steps = document.querySelectorAll('.sub__item');
   if (!steps.length) return;
@@ -203,7 +198,7 @@ const hideSubcategoryItem = () => {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // Активуємо блок, коли він заходить в "робочу зону" (центр екрана)
+     
       if (entry.isIntersecting) {
         const targetStep = entry.target;
         
@@ -211,7 +206,6 @@ const hideSubcategoryItem = () => {
           const content = step.querySelector('.sub__item__bottom');
           
           if (step === targetStep) {
-            // ВІДКРИВАЄМО активний блок
             step.classList.add('is-active');
             gsap.to(content, {
               height: "auto", // GSAP сам вирахує scrollHeight
@@ -389,29 +383,29 @@ const hideSubcategoryItem = () => {
 
 
 
-const toggleMenu = () => {
-  const htmlElement = document.querySelector("html");
-  const burgerMenus = document.querySelectorAll(".burger");
-	const closeBurger = document.querySelector(".close");
-  if (!burgerMenus.length) return;
+// const toggleMenu = () => {
+//   const htmlElement = document.querySelector("html");
+//   const burgerMenus = document.querySelectorAll(".burger");
+// 	const closeBurger = document.querySelector(".close");
+//   if (!burgerMenus.length) return;
 
-  const navLinks = document.querySelectorAll("nav a");
+//   const navLinks = document.querySelectorAll("nav a");
 
-  burgerMenus.forEach((burgerMenu) => {
-    burgerMenu.addEventListener("click", (event) => {
-      event.stopPropagation();
-      htmlElement.classList.toggle("open");
-    });
-  });
-	// closeBurger.addEventListener("click", (event) =>{
-	// 	htmlElement.classList.remove("open");
-	// });
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      htmlElement.classList.remove("open");
-    });
-  });
-};
+//   burgerMenus.forEach((burgerMenu) => {
+//     burgerMenu.addEventListener("click", (event) => {
+//       event.stopPropagation();
+//       htmlElement.classList.toggle("open");
+//     });
+//   });
+// 	// closeBurger.addEventListener("click", (event) =>{
+// 	// 	htmlElement.classList.remove("open");
+// 	// });
+//   navLinks.forEach((link) => {
+//     link.addEventListener("click", () => {
+//       htmlElement.classList.remove("open");
+//     });
+//   });
+// };
 
 const openVideo = () =>{
 	
@@ -502,8 +496,6 @@ const prettyScroll = () => {
 };
 
 
-
-
 const accordionFunction = () => {
   const accordionItems = document.querySelectorAll(".accord-item");
   accordionItems.forEach((item) => {
@@ -523,40 +515,25 @@ const teamSliderInit = () => {
   const teamSliderSwiper = new Swiper(teamSlider, {
     slidesPerView: 1,
     spaceBetween: 16,
-    centeredSlides: true,       // 🔥 центральний слайд
-    centeredSlidesBounds: true, // щоб не виїжджав за край
     watchOverflow: true,
-		loop:true,
 
     breakpoints: {
       320: {
         slidesPerView: 1,
-        centeredSlides: true
       },
       480: {
         slidesPerView: 1,
         spaceBetween: 30,
-        centeredSlides: true
       },
       640: {
         slidesPerView: 2,
         spaceBetween: 23,
-        centeredSlides: false   // ⬅️ на tablet вже краще вимкнути
       },
       1024: {
         slidesPerView: 3,
         spaceBetween: 23,
-        centeredSlides: true
       }
     },
-		on: {
-			slideChange() {
-				ScrollTrigger.refresh();
-			},
-			breakpoint() {
-				ScrollTrigger.refresh();
-			}
-		},
 
     navigation: {
       nextEl: ".team-button-next",
@@ -763,23 +740,56 @@ const initDesktopHover = () => {
 
 const initMobileAccordion = () => {
     const menuItems = document.querySelectorAll('.menu-item-has-children');
+    
     menuItems.forEach(item => {
-        const link = item.querySelector('a');
-
-        link.addEventListener('click', (e) => {
+        item.addEventListener('click', (e) => {
+            // Працюємо тільки на мобільних пристроях
             if (window.innerWidth >= 1024) return; 
-            
+
+            // Перевіряємо, чи клікнули саме по посиланню <a> всередині цього item
+            // Якщо клік був по тегу <a>, ми НІЧОГО не робимо (дозволяємо браузеру перейти за посиланням)
+            if (e.target.tagName === 'A') {
+                return; 
+            }
+
+            // Якщо клікнули по самому item (li) або будь-чому іншому всередині, крім посилання:
+            e.preventDefault();
             e.stopPropagation();
+
             const isActive = item.classList.contains('active');
-            if (!isActive) {
-                e.preventDefault();
+
+            // Закриваємо інші відкриті пункти (ефект акордеона)
+            document.querySelectorAll('.menu-item-has-children.active').forEach(activeItem => {
+                if (activeItem !== item) activeItem.classList.remove('active');
+            });
+
+            // Перемикаємо стан поточного пункту
+            if (isActive) {
+                item.classList.remove('active');
+            } else {
                 item.classList.add('active');
             }
         });
+    });
+};
 
-        item.addEventListener('click', () => {
-            if (window.innerWidth >= 1024) return;
-            item.classList.toggle('active');
+const toggleMenu = () => {
+    const htmlElement = document.querySelector("html");
+    const burgerMenus = document.querySelectorAll(".burger");
+    const navLinks = document.querySelectorAll("nav a:not(.menu-item-has-children > a)");
+
+    if (!burgerMenus.length) return;
+
+    burgerMenus.forEach((burgerMenu) => {
+        burgerMenu.addEventListener("click", (e) => {
+            e.stopPropagation();
+            htmlElement.classList.toggle("open");
+        });
+    });
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            htmlElement.classList.remove("open");
         });
     });
 };

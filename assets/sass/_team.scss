@@ -82,7 +82,7 @@
 				min-height: 521px;
 				
 			}
-			&.swiper-slide-active{
+			&:hover{
 				.team__item__info__wrapper{	
 					background-color: transparent;
 				}
