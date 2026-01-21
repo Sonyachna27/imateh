@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		openImageTabs();
 		initCounterHover();
 		updateFormProgress(1); //функция для прогресс бара
+		initAllScrollAnimations();
 });
 const initCounterHover = () => {
     const allCounterBlocks = document.querySelectorAll('.counter__content');
@@ -794,3 +795,33 @@ window.addEventListener('resize', () => {
         });
     }
 });
+
+
+ const initAllScrollAnimations = () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    
+    const sections = document.querySelectorAll('.directions__wrap, .resource__content');
+
+    sections.forEach(section => {
+        const items = section.querySelectorAll('.list__item');
+        if (!items.length) return;
+
+        // Визначаємо напрямок: 
+        // Якщо секція має клас "from-left", то x: -100, інакше x: 100
+        const directionX = section.classList.contains('wrap-reverse') ? -100 : 100;
+
+        gsap.from(items, {
+            scrollTrigger: {
+                trigger: section, // Анімація почнеться, коли з'явиться саме ця секція
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            opacity: 0,
+            x: directionX, // Використовуємо змінну для напрямку
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.2
+        });
+    });
+};
