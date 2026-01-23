@@ -133,12 +133,20 @@
 	flex-wrap: nowrap;
 	gap: 13.5px;
 	overflow-x: auto; 
-  overflow-y: hidden;
+  // overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
 	width:100%;
-
+	@media screen and (max-width:1023.9px) {
+		margin-right: -18px;
+		margin-left: -18px;
+		position: relative;
+		z-index: 2;
+		width: 100vw;
+		padding: 0 18px;
+	}
 	&::-webkit-scrollbar {
     height: 4px; 
+		width: calc(100% - 18px);
   }
 
   &::-webkit-scrollbar-track {

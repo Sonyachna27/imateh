@@ -150,6 +150,14 @@
 				padding-left: 36px;
 			}
 			li{
+				font-family: "Manrope", sans-serif;
+					font-size: 12px;
+					font-style: normal;
+					font-weight: 500;
+					line-height: 120%;
+							@media  screen and (min-width:1024px) {
+								font-size: 14px;
+							}
 				a{
 					color: inherit;
 				}

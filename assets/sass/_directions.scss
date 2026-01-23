@@ -15,7 +15,11 @@
 			text-align: left;
 		}
 	}
-	
+	span{
+		@media screen and (min-width:1024px) {
+			font-size: 22px;
+		}
+	}
 
 
 	

@@ -92,7 +92,7 @@ margin-bottom: 240px;
 	&__name{
 		color: $white;
 		width: calc(100% - 98px - 24px);
-		span{
+		a{
 				transition: 600ms ease-out;
 			span{
 				color: $gray-300;

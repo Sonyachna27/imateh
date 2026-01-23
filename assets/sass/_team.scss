@@ -77,6 +77,8 @@
 			flex-direction: column;
 			min-height: 427px;
 			aspect-ratio: 5 / 6;
+			border-radius: 32.793px;
+			background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%);
 			@media screen and (min-width:1240px) {
 				padding-top: 334px;
 				min-height: 521px;
@@ -133,13 +135,17 @@
 					flex-grow: 1;
 					height: 100%;
 					padding: 0 15px 10px 15px;
-					border-radius: 0 0 32px 32px;
-					background-color: $black-200;
+					border-radius: 0 0 32px 32px;					
 					transition: 600ms ease-out;
 					position: relative;
-				z-index: 3;
+					z-index: 3;
+					
 				@media screen and (min-width:1240px) {
 					padding: 0 15px 20px 15px;
+					
+				}
+				@media screen and (min-width:1024px) {
+					background-color: $black-200;
 				}
 				}
 				&__name{
@@ -148,6 +154,10 @@
 					font-weight: 500;
 					line-height: 120%;
 					transition: 600ms ease-out;
+					color: $accent-100;
+					@media screen and (min-width:640px) {
+						color: $white;
+					}
 					@media screen and (min-width:1024px) and (max-width:1239.9px) {
 						font-size: 16px;
 					}
@@ -156,7 +166,7 @@
 					}
 				}
 				&__description{
-					font-size: 14px;
+					font-size: 16px;
 					font-style: normal;
 					font-weight: 500;
 					line-height: 140%;

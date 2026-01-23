@@ -524,7 +524,7 @@ const teamSliderInit = () => {
       },
       480: {
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 23,
       },
       640: {
         slidesPerView: 2,
@@ -807,18 +807,17 @@ window.addEventListener('resize', () => {
         const items = section.querySelectorAll('.list__item');
         if (!items.length) return;
 
-        // Визначаємо напрямок: 
-        // Якщо секція має клас "from-left", то x: -100, інакше x: 100
+        
         const directionX = section.classList.contains('wrap-reverse') ? -100 : 100;
 
         gsap.from(items, {
             scrollTrigger: {
-                trigger: section, // Анімація почнеться, коли з'явиться саме ця секція
+                trigger: section, 
                 start: "top 85%",
                 toggleActions: "play none none none",
             },
             opacity: 0,
-            x: directionX, // Використовуємо змінну для напрямку
+            x: directionX, 
             duration: 0.8,
             ease: "power2.out",
             stagger: 0.2
